@@ -1,52 +1,52 @@
-// Global variables
-let posts = [];
-let categories = {};
-let tags = {};
+// 全域變數
+let posts = []; // 儲存所有文章資料
+let categories = {}; // 儲存分類統計
+let tags = {}; // 儲存標籤統計
 
-// Initialize the application
+// 初始化應用程式
 document.addEventListener('DOMContentLoaded', function() {
-    loadPosts();
-    setupThemeToggle();
-    setupSearch();
-    setupBackToTop();
+    loadPosts(); // 載入文章
+    setupThemeToggle(); // 設定主題切換
+    setupSearch(); // 設定搜尋功能
+    setupBackToTop(); // 設定回到頂部按鈕
 });
 
-// Load posts from posts.json
+// 從 posts.json 載入文章資料
 async function loadPosts() {
     try {
         const response = await fetch('posts.json');
         const data = await response.json();
         posts = data.posts || [];
         
-        // Process categories and tags
+        // 處理分類和標籤統計
         processCategoriesAndTags();
         
-        // Render posts
+        // 渲染文章列表
         renderPosts(posts);
         
-        // Render sidebar
+        // 渲染側邊欄
         renderCategories();
         renderTags();
         
     } catch (error) {
-        console.error('Error loading posts:', error);
+        console.error('載入文章時發生錯誤:', error);
         document.getElementById('postsContainer').innerHTML = 
-            '<div class="loading">Loading posts...</div>';
+            '<div class="loading">載入文章中...</div>';
     }
 }
 
-// Process categories and tags from posts
+// 處理文章的分類和標籤統計
 function processCategoriesAndTags() {
     categories = {};
     tags = {};
     
     posts.forEach(post => {
-        // Process categories
+        // 處理分類統計
         if (post.category) {
             categories[post.category] = (categories[post.category] || 0) + 1;
         }
         
-        // Process tags
+        // 處理標籤統計
         if (post.tags) {
             post.tags.forEach(tag => {
                 tags[tag] = (tags[tag] || 0) + 1;
@@ -55,19 +55,19 @@ function processCategoriesAndTags() {
     });
 }
 
-// Render posts
+// 渲染文章列表
 function renderPosts(postsToRender) {
     const container = document.getElementById('postsContainer');
     
     if (postsToRender.length === 0) {
-        container.innerHTML = '<div class="loading">No posts found</div>';
+        container.innerHTML = '<div class="loading">沒有找到文章</div>';
         return;
     }
     
     const postsHTML = postsToRender.map(post => createPostCard(post)).join('');
     container.innerHTML = postsHTML;
     
-    // Add click handlers to post cards
+    // 為文章卡片添加點擊事件處理器
     document.querySelectorAll('.post-card').forEach(card => {
         card.addEventListener('click', function() {
             const postId = this.dataset.postId;
@@ -76,10 +76,10 @@ function renderPosts(postsToRender) {
     });
 }
 
-// Create post card HTML
+// 創建文章卡片 HTML
 function createPostCard(post) {
     const wordCount = post.content ? post.content.split(' ').length : 0;
-    const readingTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute
+    const readingTime = Math.ceil(wordCount / 200); // 假設每分鐘閱讀 200 字
     
     const tagsHTML = post.tags ? post.tags.map(tag => 
         `<span class="tag">${tag}</span>`
@@ -90,13 +90,13 @@ function createPostCard(post) {
             <h2 class="post-title">${post.title}</h2>
             <div class="post-meta">
                 <span><i class="fas fa-calendar"></i> ${post.date}</span>
-                <span><i class="fas fa-folder"></i> ${post.category || 'Uncategorized'}</span>
+                <span><i class="fas fa-folder"></i> ${post.category || '未分類'}</span>
             </div>
             <div class="post-tags">
                 <i class="fas fa-tags"></i>
                 ${tagsHTML}
             </div>
-            <p class="post-excerpt">${post.excerpt || 'No excerpt available'}</p>
+            <p class="post-excerpt">${post.excerpt || '沒有摘要'}</p>
             <div class="post-stats">
                 <span>${wordCount} words | ${readingTime} minutes</span>
                 <i class="fas fa-arrow-right post-arrow"></i>
@@ -105,7 +105,7 @@ function createPostCard(post) {
     `;
 }
 
-// Render categories in sidebar
+// 渲染分類側邊欄
 function renderCategories() {
     const container = document.getElementById('categoryList');
     const categoriesList = Object.entries(categories)
@@ -119,7 +119,7 @@ function renderCategories() {
     
     container.innerHTML = categoriesList;
     
-    // Add click handlers
+    // 添加點擊事件處理器
     document.querySelectorAll('.category-item').forEach(item => {
         item.addEventListener('click', function() {
             const category = this.dataset.category;
@@ -128,7 +128,7 @@ function renderCategories() {
     });
 }
 
-// Render tags in sidebar
+// 渲染標籤雲側邊欄
 function renderTags() {
     const container = document.getElementById('tagCloud');
     const tagsList = Object.entries(tags)
@@ -139,7 +139,7 @@ function renderTags() {
     
     container.innerHTML = tagsList;
     
-    // Add click handlers
+    // 添加點擊事件處理器
     document.querySelectorAll('.tag').forEach(tag => {
         tag.addEventListener('click', function() {
             const tagName = this.dataset.tag;
@@ -148,38 +148,38 @@ function renderTags() {
     });
 }
 
-// Filter posts by category
+// 根據分類篩選文章
 function filterPostsByCategory(category) {
     const filteredPosts = posts.filter(post => post.category === category);
     renderPosts(filteredPosts);
     
-    // Update active state
+    // 更新激活狀態
     document.querySelectorAll('.category-item').forEach(item => {
         item.classList.remove('active');
     });
     document.querySelector(`[data-category="${category}"]`).classList.add('active');
 }
 
-// Filter posts by tag
+// 根據標籤篩選文章
 function filterPostsByTag(tag) {
     const filteredPosts = posts.filter(post => 
         post.tags && post.tags.includes(tag)
     );
     renderPosts(filteredPosts);
     
-    // Update active state
+    // 更新激活狀態
     document.querySelectorAll('.tag').forEach(tagEl => {
         tagEl.classList.remove('active');
     });
     document.querySelector(`[data-tag="${tag}"]`).classList.add('active');
 }
 
-// Setup theme toggle
+// 設定主題切換
 function setupThemeToggle() {
     const themeToggle = document.getElementById('themeToggle');
     const icon = themeToggle.querySelector('i');
     
-    // Load saved theme
+    // 載入保存的主題
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(icon, savedTheme);
@@ -194,7 +194,7 @@ function setupThemeToggle() {
     });
 }
 
-// Update theme icon
+// 更新主題圖標
 function updateThemeIcon(icon, theme) {
     if (theme === 'light') {
         icon.className = 'fas fa-sun';
@@ -203,7 +203,7 @@ function updateThemeIcon(icon, theme) {
     }
 }
 
-// Setup search functionality
+// 設定搜尋功能
 function setupSearch() {
     const searchInput = document.getElementById('searchInput');
     let searchTimeout;
@@ -230,7 +230,7 @@ function setupSearch() {
     });
 }
 
-// Setup back to top button
+// 設定回到頂部按鈕
 function setupBackToTop() {
     const backToTop = document.createElement('button');
     backToTop.className = 'back-to-top';
@@ -253,7 +253,7 @@ function setupBackToTop() {
     });
 }
 
-// Utility function to format date
+// 工具函數：格式化日期
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('zh-TW', {
@@ -263,14 +263,14 @@ function formatDate(dateString) {
     });
 }
 
-// Utility function to calculate reading time
+// 工具函數：計算閱讀時間
 function calculateReadingTime(content) {
     const wordsPerMinute = 200;
     const wordCount = content.split(' ').length;
     return Math.ceil(wordCount / wordsPerMinute);
 }
 
-// Export functions for use in other files
+// 導出函數供其他文件使用
 window.blogUtils = {
     formatDate,
     calculateReadingTime,

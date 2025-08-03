@@ -1,36 +1,37 @@
-/* CSS Variables for Theme */
+/* CSS 變數定義 - 主題色彩 */
 :root {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2d2d2d;
-    --bg-card: #333333;
-    --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
-    --accent-blue: #4a9eff;
-    --accent-hover: #5ba8ff;
-    --border-color: #404040;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    --border-radius: 12px;
-    --transition: all 0.3s ease;
+    --bg-primary: #1a1a1a; /* 主要背景色 */
+    --bg-secondary: #2d2d2d; /* 次要背景色 */
+    --bg-card: #333333; /* 卡片背景色 */
+    --text-primary: #ffffff; /* 主要文字色 */
+    --text-secondary: #b0b0b0; /* 次要文字色 */
+    --accent-blue: #4a9eff; /* 強調藍色 */
+    --accent-hover: #5ba8ff; /* 強調藍色懸停狀態 */
+    --border-color: #404040; /* 邊框顏色 */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* 陰影效果 */
+    --border-radius: 12px; /* 圓角半徑 */
+    --transition: all 0.3s ease; /* 過渡動畫 */
 }
 
-/* Light theme variables */
+/* 淺色主題變數 */
 [data-theme="light"] {
-    --bg-primary: #f8f9fa;
-    --bg-secondary: #ffffff;
-    --bg-card: #ffffff;
-    --text-primary: #2c3e50;
-    --text-secondary: #6c757d;
-    --border-color: #e9ecef;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --bg-primary: #f8f9fa; /* 淺色主題主要背景 */
+    --bg-secondary: #ffffff; /* 淺色主題次要背景 */
+    --bg-card: #ffffff; /* 淺色主題卡片背景 */
+    --text-primary: #2c3e50; /* 淺色主題主要文字 */
+    --text-secondary: #6c757d; /* 淺色主題次要文字 */
+    --border-color: #e9ecef; /* 淺色主題邊框 */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 淺色主題陰影 */
 }
 
-/* Global Styles */
+/* 全域樣式重置 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* 主體樣式 */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-primary);
@@ -39,11 +40,11 @@ body {
     transition: var(--transition);
 }
 
-/* Header */
+/* 頁首樣式 */
 .header {
     background-color: var(--bg-secondary);
     border-bottom: 1px solid var(--border-color);
-    position: sticky;
+    position: sticky; /* 固定頁首 */
     top: 0;
     z-index: 100;
     box-shadow: var(--shadow);
@@ -58,6 +59,7 @@ body {
     justify-content: space-between;
 }
 
+/* 網站標誌 */
 .logo {
     display: flex;
     align-items: center;
@@ -71,6 +73,7 @@ body {
     font-size: 1.2rem;
 }
 
+/* 導航選單 */
 .nav {
     display: flex;
     gap: 2rem;
@@ -89,12 +92,14 @@ body {
     color: var(--accent-blue);
 }
 
+/* 頁首控制項（搜尋框和主題切換） */
 .header-controls {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
+/* 搜尋框樣式 */
 .search-box {
     position: relative;
     display: flex;

@@ -1,66 +1,69 @@
-// Simple Markdown to HTML converter
+// 簡單的 Markdown 轉 HTML 轉換器
 class MarkdownConverter {
     constructor() {
+        // 定義轉換規則陣列
         this.rules = [
-            // Headers
-            { pattern: /^### (.*$)/gim, replacement: '<h3>$1</h3>' },
-            { pattern: /^## (.*$)/gim, replacement: '<h2>$1</h2>' },
-            { pattern: /^# (.*$)/gim, replacement: '<h1>$1</h1>' },
+            // 標題轉換規則
+            { pattern: /^### (.*$)/gim, replacement: '<h3>$1</h3>' }, // 三級標題
+            { pattern: /^## (.*$)/gim, replacement: '<h2>$1</h2>' }, // 二級標題
+            { pattern: /^# (.*$)/gim, replacement: '<h1>$1</h1>' }, // 一級標題
             
-            // Bold and Italic
-            { pattern: /\*\*\*(.*?)\*\*\*/g, replacement: '<strong><em>$1</em></strong>' },
-            { pattern: /\*\*(.*?)\*\*/g, replacement: '<strong>$1</strong>' },
-            { pattern: /\*(.*?)\*/g, replacement: '<em>$1</em>' },
+            // 粗體和斜體轉換規則
+            { pattern: /\*\*\*(.*?)\*\*\*/g, replacement: '<strong><em>$1</em></strong>' }, // 粗斜體
+            { pattern: /\*\*(.*?)\*\*/g, replacement: '<strong>$1</strong>' }, // 粗體
+            { pattern: /\*(.*?)\*/g, replacement: '<em>$1</em>' }, // 斜體
             
-            // Code blocks
-            { pattern: /```([\s\S]*?)```/g, replacement: '<pre><code>$1</code></pre>' },
-            { pattern: /`([^`]+)`/g, replacement: '<code>$1</code>' },
+            // 程式碼區塊轉換規則
+            { pattern: /```([\s\S]*?)```/g, replacement: '<pre><code>$1</code></pre>' }, // 多行程式碼
+            { pattern: /`([^`]+)`/g, replacement: '<code>$1</code>' }, // 單行程式碼
             
-            // Links
+            // 連結轉換規則
             { pattern: /\[([^\]]+)\]\(([^)]+)\)/g, replacement: '<a href="$2" target="_blank">$1</a>' },
             
-            // Images
+            // 圖片轉換規則
             { pattern: /!\[([^\]]*)\]\(([^)]+)\)/g, replacement: '<img src="$2" alt="$1" style="max-width: 100%; height: auto;">' },
             
-            // Lists
-            { pattern: /^\* (.*$)/gim, replacement: '<li>$1</li>' },
-            { pattern: /^- (.*$)/gim, replacement: '<li>$1</li>' },
-            { pattern: /^\d+\. (.*$)/gim, replacement: '<li>$1</li>' },
+            // 列表轉換規則
+            { pattern: /^\* (.*$)/gim, replacement: '<li>$1</li>' }, // 無序列表
+            { pattern: /^- (.*$)/gim, replacement: '<li>$1</li>' }, // 無序列表（破折號）
+            { pattern: /^\d+\. (.*$)/gim, replacement: '<li>$1</li>' }, // 有序列表
             
-            // Blockquotes
+            // 引用區塊轉換規則
             { pattern: /^> (.*$)/gim, replacement: '<blockquote>$1</blockquote>' },
             
-            // Horizontal rules
+            // 水平分隔線轉換規則
             { pattern: /^---$/gim, replacement: '<hr>' },
             
-            // Line breaks
-            { pattern: /\n\n/g, replacement: '</p><p>' },
+            // 換行轉換規則
+            { pattern: /\n\n/g, replacement: '</p><p>' }, // 雙換行轉段落
         ];
     }
     
+    // 主要轉換函數
     convert(markdown) {
         if (!markdown) return '';
         
-        // Wrap in paragraph tags
+        // 用段落標籤包裝內容
         let html = '<p>' + markdown + '</p>';
         
-        // Apply conversion rules
+        // 應用所有轉換規則
         this.rules.forEach(rule => {
             html = html.replace(rule.pattern, rule.replacement);
         });
         
-        // Clean up empty paragraphs
+        // 清理空段落
         html = html.replace(/<p><\/p>/g, '');
         html = html.replace(/<p><\/p>/g, '');
         
-        // Wrap lists properly
+        // 正確包裝列表
         html = this.wrapLists(html);
         
         return html;
     }
     
+    // 包裝列表項目到 ul/ol 標籤中
     wrapLists(html) {
-        // Find consecutive list items and wrap them in ul/ol tags
+        // 尋找連續的列表項目並用 ul/ol 標籤包裝
         const listItemPattern = /<li>.*?<\/li>/g;
         const listItems = html.match(listItemPattern);
         
