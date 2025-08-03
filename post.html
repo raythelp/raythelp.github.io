@@ -3,153 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章 - Raythelp's Blog</title>
+    <title>My-Blog</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <i class="fas fa-home"></i>
-                <span>Raythelp's Blog</span>
-            </div>
-            <nav class="nav">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="#" class="nav-link">Archive</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="https://github.com/raythelp" class="nav-link" target="_blank">
-                    GitHub <i class="fas fa-external-link-alt"></i>
-                </a>
-            </nav>
-            <div class="header-controls">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search..." id="searchInput">
-                </div>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+    <!-- 頁首容器 -->
+    <div id="headerContainer"></div>
 
-    <!-- Main Content -->
+    <!-- 主要內容 -->
     <main class="main-content">
-        <!-- Left Sidebar -->
-        <aside class="sidebar">
-            <!-- Profile Card -->
-            <div class="profile-card">
-                <div class="profile-avatar">
-                    <i class="fas fa-dragon"></i>
-                </div>
-                <h3 class="profile-name">Raythelp</h3>
-                <p class="profile-bio">CyberSecurity / GameDev</p>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-steam"></i></a>
-                    <a href="https://github.com/raythelp" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
+        <!-- 側邊欄容器 -->
+        <div id="sidebarContainer"></div>
 
-            <!-- Categories -->
-            <div class="sidebar-section">
-                <h3 class="section-title">Categories</h3>
-                <ul class="category-list" id="categoryList">
-                    <!-- Categories will be populated by JavaScript -->
-                </ul>
-            </div>
-
-            <!-- Tags -->
-            <div class="sidebar-section">
-                <h3 class="section-title">Tags</h3>
-                <div class="tag-cloud" id="tagCloud">
-                    <!-- Tags will be populated by JavaScript -->
-                </div>
-            </div>
-        </aside>
-
-        <!-- Right Content -->
+        <!-- 右側內容區域 -->
         <section class="content">
-            <div id="postContainer">
-                <!-- Post content will be loaded here -->
+            <div class="post-content" id="postContent">
+                <!-- 文章內容將由 JavaScript 動態生成 -->
             </div>
         </section>
     </main>
 
-    <script src="js/markdown.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        // Load specific post
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const postId = urlParams.get('id');
-            
-            if (postId) {
-                loadPost(postId);
-            } else {
-                document.getElementById('postContainer').innerHTML = 
-                    '<div class="loading">Post not found</div>';
-            }
-        });
+    <!-- 頁尾容器 -->
+    <div id="footerContainer"></div>
 
+    <!-- 載入設定檔 -->
+    <script src="js/config.js"></script>
+    <!-- 載入共用元件 -->
+    <script src="js/common.js"></script>
+    <!-- 載入 Markdown 轉換器 -->
+    <script src="js/markdown.js"></script>
+    <!-- 載入統計功能 -->
+    <script src="js/analytics.js"></script>
+    <!-- 載入主要功能 -->
+    <script src="js/main.js"></script>
+    <!-- 載入文章頁面功能 -->
+    <script>
+        // 文章頁面專用功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 等待共用元件初始化完成
+            setTimeout(() => {
+                // 載入分類和標籤
+                loadCategoriesAndTags();
+                
+                // 從 URL 獲取文章 ID
+                const urlParams = new URLSearchParams(window.location.search);
+                const postId = urlParams.get('id');
+                
+                if (!postId) {
+                    document.getElementById('postContent').innerHTML = '<div class="loading">找不到文章</div>';
+                    return;
+                }
+                
+                // 載入文章資料
+                loadPost(postId);
+            }, 200);
+        });
+        
+        // 載入分類和標籤
+        async function loadCategoriesAndTags() {
+            try {
+                const response = await fetch('posts.json');
+                const data = await response.json();
+                const posts = data.posts || [];
+                
+                // 處理分類和標籤統計
+                const categories = {};
+                const tags = {};
+                
+                posts.forEach(post => {
+                    // 處理分類統計
+                    if (post.category) {
+                        categories[post.category] = (categories[post.category] || 0) + 1;
+                    }
+                    
+                    // 處理標籤統計
+                    if (post.tags) {
+                        post.tags.forEach(tag => {
+                            tags[tag] = (tags[tag] || 0) + 1;
+                        });
+                    }
+                });
+                
+                // 渲染分類
+                renderCategories(categories);
+                
+                // 渲染標籤
+                renderTags(tags);
+                
+            } catch (error) {
+                console.error('載入分類和標籤時發生錯誤:', error);
+            }
+        }
+        
+        // 渲染分類側邊欄
+        function renderCategories(categories) {
+            const container = document.getElementById('categoryList');
+            if (!container) return;
+            
+            const categoriesList = Object.entries(categories)
+                .map(([category, count]) => `
+                    <li class="category-item" data-category="${category}">
+                        <span class="category-name">${category}</span>
+                        <span class="category-count">${count}</span>
+                    </li>
+                `).join('');
+            
+            container.innerHTML = categoriesList;
+            
+            // 添加點擊事件處理器
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    window.location.href = `index.html?category=${category}`;
+                });
+            });
+        }
+        
+        // 渲染標籤雲側邊欄
+        function renderTags(tags) {
+            const container = document.getElementById('tagCloud');
+            if (!container) return;
+            
+            const tagsList = Object.entries(tags)
+                .map(([tag, count]) => `
+                    <span class="tag" data-tag="${tag}">
+                        ${tag} <span class="tag-count">${count}</span>
+                    </span>
+                `).join('');
+            
+            container.innerHTML = tagsList;
+            
+            // 添加點擊事件處理器
+            document.querySelectorAll('.tag').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const tagName = this.dataset.tag;
+                    window.location.href = `index.html?tag=${tagName}`;
+                });
+            });
+        }
+        
+        // 載入單篇文章
         async function loadPost(postId) {
             try {
                 const response = await fetch('posts.json');
                 const data = await response.json();
                 const post = data.posts.find(p => p.id === postId);
                 
-                if (post) {
-                    renderPost(post);
-                } else {
-                    document.getElementById('postContainer').innerHTML = 
-                        '<div class="loading">Post not found</div>';
+                if (!post) {
+                    document.getElementById('postContent').innerHTML = '<div class="loading">找不到文章</div>';
+                    return;
                 }
+                
+                // 渲染文章內容
+                renderPost(post);
+                
             } catch (error) {
-                console.error('Error loading post:', error);
-                document.getElementById('postContainer').innerHTML = 
-                    '<div class="loading">Error loading post</div>';
+                console.error('載入文章時發生錯誤:', error);
+                document.getElementById('postContent').innerHTML = '<div class="loading">載入文章失敗</div>';
             }
         }
-
+        
+        // 渲染文章
         function renderPost(post) {
-            const container = document.getElementById('postContainer');
-            const wordCount = post.content ? post.content.split(' ').length : 0;
-            const readingTime = Math.ceil(wordCount / 200);
+            const container = document.getElementById('postContent');
             
-            const tagsHTML = post.tags ? post.tags.map(tag => 
-                `<span class="tag">${tag}</span>`
-            ).join('') : '';
+            // 轉換 Markdown 為 HTML
+            const contentHtml = window.markdownConverter.convert(post.content);
             
-            const contentHTML = window.markdownConverter.convert(post.content);
+            const wordCount = Analytics.countWords(post.content);
+            const readingTime = Math.ceil(wordCount / SITE_CONFIG.posts.readingSpeed);
             
-            container.innerHTML = `
+            const postHtml = `
                 <article class="post-content">
                     <header class="post-header">
+                        <div class="post-stats">
+                            <span class="word-count"><i class="fas fa-book"></i> ${wordCount} 字</span>
+                            <span class="reading-time"><i class="fas fa-clock"></i> ${readingTime} 分鐘</span>
+                            <span class="view-count" data-page-id="post_${post.id}"><i class="fas fa-eye"></i> ${Analytics.getPageViews('post_' + post.id)} 次瀏覽</span>
+                        </div>
                         <h1 class="post-title">${post.title}</h1>
                         <div class="post-meta">
                             <span><i class="fas fa-calendar"></i> ${post.date}</span>
-                            <span><i class="fas fa-folder"></i> ${post.category || 'Uncategorized'}</span>
-                        </div>
-                        <div class="post-tags">
-                            <i class="fas fa-tags"></i>
-                            ${tagsHTML}
-                        </div>
-                        <div class="post-stats">
-                            <span>${wordCount} words | ${readingTime} minutes</span>
+                            <span><i class="fas fa-folder"></i> ${post.category || '未分類'}</span>
+                            <span><i class="fas fa-tags"></i> ${post.tags ? post.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}</span>
                         </div>
                     </header>
                     <div class="post-body">
-                        ${contentHTML}
+                        ${contentHtml}
                     </div>
-                    <footer class="post-footer">
-                        <a href="index.html" class="back-link">
-                            <i class="fas fa-arrow-left"></i> Back to Home
-                        </a>
-                    </footer>
                 </article>
             `;
+            
+            container.innerHTML = postHtml;
         }
     </script>
 </body>
