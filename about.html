@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Raythelp's Blog</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                <span>Raythelp's Blog</span>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Archive</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="https://github.com/raythelp" class="nav-link" target="_blank">
+                    GitHub <i class="fas fa-external-link-alt"></i>
+                </a>
+            </nav>
+            <div class="header-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search..." id="searchInput">
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <i class="fas fa-dragon"></i>
+                </div>
+                <h3 class="profile-name">Raythelp</h3>
+                <p class="profile-bio">CyberSecurity / GameDev</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-steam"></i></a>
+                    <a href="https://github.com/raythelp" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <h3 class="section-title">Categories</h3>
+                <ul class="category-list" id="categoryList">
+                    <!-- Categories will be populated by JavaScript -->
+                </ul>
+            </div>
+
+            <!-- Tags -->
+            <div class="sidebar-section">
+                <h3 class="section-title">Tags</h3>
+                <div class="tag-cloud" id="tagCloud">
+                    <!-- Tags will be populated by JavaScript -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Content -->
+        <section class="content">
+            <div class="about-content">
+                <h1>關於我</h1>
+                
+                <div class="about-section">
+                    <h2><i class="fas fa-user"></i> 個人簡介</h2>
+                    <p>你好！我是 Raythelp，一個對網路安全和遊戲開發充滿熱情的開發者。我喜歡探索技術的奧秘，特別是在逆向工程和網路安全領域。</p>
+                </div>
+
+                <div class="about-section">
+                    <h2><i class="fas fa-graduation-cap"></i> 教育背景</h2>
+                    <ul>
+                        <li>國立台灣大學 資訊工程學系</li>
+                        <li>專注於網路安全、逆向工程、遊戲開發</li>
+                    </ul>
+                </div>
+
+                <div class="about-section">
+                    <h2><i class="fas fa-code"></i> 技術技能</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>程式語言</h3>
+                            <ul>
+                                <li>Python</li>
+                                <li>C++</li>
+                                <li>C#</li>
+                                <li>JavaScript</li>
+                                <li>Java</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>框架與工具</h3>
+                            <ul>
+                                <li>Unity</li>
+                                <li>React</li>
+                                <li>Node.js</li>
+                                <li>Git</li>
+                                <li>Docker</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>安全工具</h3>
+                            <ul>
+                                <li>Ghidra</li>
+                                <li>IDA Pro</li>
+                                <li>Wireshark</li>
+                                <li>Burp Suite</li>
+                                <li>Metasploit</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h2><i class="fas fa-trophy"></i> 興趣與活動</h2>
+                    <ul>
+                        <li><strong>CTF 競賽</strong> - 定期參加各種網路安全競賽</li>
+                        <li><strong>逆向工程</strong> - 分析軟體和遊戲的內部結構</li>
+                        <li><strong>遊戲開發</strong> - 使用 Unity 開發獨立遊戲</li>
+                        <li><strong>開源貢獻</strong> - 參與開源專案和社群</li>
+                    </ul>
+                </div>
+
+                <div class="about-section">
+                    <h2><i class="fas fa-envelope"></i> 聯絡方式</h2>
+                    <div class="contact-info">
+                        <p><i class="fab fa-github"></i> <a href="https://github.com/raythelp" target="_blank">GitHub</a></p>
+                        <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/raythelp" target="_blank">LinkedIn</a></p>
+                        <p><i class="fab fa-steam"></i> <a href="https://steamcommunity.com/id/raythelp" target="_blank">Steam</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:raythelp@example.com">Email</a></p>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h2><i class="fas fa-heart"></i> 這個部落格</h2>
+                    <p>這個部落格是我分享技術心得和學習筆記的地方。我會在這裡記錄：</p>
+                    <ul>
+                        <li>CTF 解題心得</li>
+                        <li>逆向工程技巧</li>
+                        <li>遊戲開發經驗</li>
+                        <li>技術學習筆記</li>
+                        <li>生活點滴分享</li>
+                    </ul>
+                    <p>希望這些內容能對你有所幫助！</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

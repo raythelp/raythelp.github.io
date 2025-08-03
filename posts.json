@@ -1,0 +1,49 @@
+{
+  "posts": [
+    {
+      "id": "2025-08-03-test",
+      "title": "歡迎來到我的部落格",
+      "date": "2025-08-03",
+      "category": "Life",
+      "tags": ["Chinese", "Others"],
+      "excerpt": "這是一個測試文章，用來展示部落格的功能。包含關於我的介紹、技術棧和程式碼範例。",
+      "content": "# 歡迎來到我的部落格\n\n這是一個測試文章，用來展示部落格的功能。\n\n## 關於我\n\n我是一個對**網路安全**和**遊戲開發**充滿熱情的開發者。我喜歡：\n\n* 參與 CTF 競賽\n* 學習逆向工程\n* 開發 Unity 遊戲\n* 研究網路安全技術\n\n## 技術棧\n\n我主要使用的技術包括：\n\n- **程式語言**: Python, C++, C#, JavaScript\n- **框架**: Unity, React, Node.js\n- **工具**: Ghidra, IDA Pro, Wireshark\n\n## 程式碼範例\n\n以下是一個簡單的 Python 程式碼範例：\n\n```python\ndef hello_world():\n    print(\"Hello, World!\")\n    return \"歡迎來到我的部落格！\"\n\n# 執行函數\nresult = hello_world()\nprint(result)\n```\n\n## 連結\n\n你可以透過以下連結找到我：\n\n- [GitHub](https://github.com/raythelp)\n- [LinkedIn](https://linkedin.com/in/raythelp)\n\n---\n\n*這篇文章展示了基本的 Markdown 語法支援，包括標題、列表、程式碼區塊、連結等。*"
+    },
+    {
+      "id": "2025-04-26-ctf-writeup",
+      "title": "Hacktheon Sejong 2025 Write-up",
+      "date": "2025-04-26",
+      "category": "CTF",
+      "tags": ["Write-up", "Chinese", "Reverse", "Forensics"],
+      "excerpt": "Write-up of Bacode/Bridge/I love reversing/Shadow of the System/Watch/Hidden message",
+      "content": "# Hacktheon Sejong 2025 Write-up\n\n這次參加了 Hacktheon Sejong 2025 CTF 競賽，記錄一下解題過程。\n\n## 題目列表\n\n### Bacode\n\n這是一道關於條碼的題目...\n\n```python\n# 解題程式碼\nimport cv2\nimport numpy as np\n\n# 讀取圖片\nimg = cv2.imread('barcode.png')\n# 處理條碼...\n```\n\n### Bridge\n\n網路相關的題目，需要分析封包...\n\n### I love reversing\n\n逆向工程題目，使用 Ghidra 分析...\n\n### Shadow of the System\n\n系統安全相關題目...\n\n### Watch\n\n監控相關題目...\n\n### Hidden message\n\n隱藏訊息題目...\n\n## 總結\n\n這次比賽學到了很多，特別是逆向工程和數位鑑識的部分。"
+    },
+    {
+      "id": "2025-02-01-ntu-experience",
+      "title": "台大資工大一上修膳心得",
+      "date": "2025-02-01",
+      "category": "Life",
+      "tags": ["Life", "NTU", "Chinese"],
+      "excerpt": "2024 9月到12月開學後的一些瑣事",
+      "content": "# 台大資工大一上修膳心得\n\n2024年9月到12月開學後的一些瑣事記錄。\n\n## 課程心得\n\n### 程式設計\n\n這門課讓我對程式設計有了更深入的理解...\n\n### 微積分\n\n數學基礎很重要，這門課幫助我建立了良好的數學思維...\n\n### 線性代數\n\n雖然一開始覺得抽象，但後來發現應用很廣泛...\n\n## 生活點滴\n\n### 住宿\n\n住在學校宿舍，認識了很多同學...\n\n### 社團活動\n\n參加了資工系學會，學到了很多...\n\n### 課外學習\n\n除了課堂學習，也參加了一些課外活動...\n\n## 總結\n\n大一上學期過得很快，學到了很多東西，也認識了很多朋友。期待下學期的挑戰！"
+    },
+    {
+      "id": "2024-08-12-unity-explorer",
+      "title": "Unity 逆向入門第三篇: UnityExplorer",
+      "date": "2024-08-12",
+      "category": "Reverse",
+      "tags": ["Reverse", "Unity", "Chinese"],
+      "excerpt": "Unity 遊戲逆向的一些小技巧",
+      "content": "# Unity 逆向入門第三篇: UnityExplorer\n\n這篇文章介紹如何使用 UnityExplorer 工具進行 Unity 遊戲逆向分析。\n\n## UnityExplorer 簡介\n\nUnityExplorer 是一個強大的 Unity 遊戲逆向工具，可以幫助我們：\n\n* 查看遊戲物件結構\n* 修改遊戲參數\n* 分析遊戲邏輯\n* 提取遊戲資源\n\n## 安裝與設定\n\n### 下載\n\n從 GitHub 下載最新版本...\n\n### 安裝\n\n```bash\n# 下載並解壓\nwget https://github.com/sinafarhadi/UnityExplorer/releases/latest/download/UnityExplorer.zip\nunzip UnityExplorer.zip\n```\n\n## 使用方法\n\n### 基本操作\n\n1. 啟動遊戲\n2. 注入 UnityExplorer\n3. 查看物件樹\n4. 修改參數\n\n### 進階功能\n\n* 腳本注入\n* 記憶體修改\n* 資源提取\n\n## 實際案例\n\n以某個 Unity 遊戲為例，展示如何使用 UnityExplorer...\n\n## 注意事項\n\n* 僅用於學習和研究\n* 遵守相關法律法規\n* 尊重遊戲開發者\n\n## 總結\n\nUnityExplorer 是 Unity 逆向分析的重要工具，掌握它對理解遊戲架構很有幫助。"
+    },
+    {
+      "id": "2024-07-24-unity-decompile",
+      "title": "Unity 逆向入門第二篇:反編譯",
+      "date": "2024-07-24",
+      "category": "Reverse",
+      "tags": ["Reverse", "Unity", "Chinese"],
+      "excerpt": "Unity 遊戲逆向的一些小技巧",
+      "content": "# Unity 逆向入門第二篇:反編譯\n\n這篇文章介紹 Unity 遊戲的反編譯技術。\n\n## 反編譯工具\n\n### dnSpy\n\ndnSpy 是一個強大的 .NET 反編譯工具：\n\n* 支援 IL 代碼查看\n* 可以修改和重新編譯\n* 支援除錯功能\n\n### ILSpy\n\n開源的 .NET 反編譯器：\n\n* 免費開源\n* 跨平台支援\n* 功能完整\n\n## 反編譯流程\n\n### 1. 提取 Assembly\n\n```bash\n# 從 APK 中提取\nunzip game.apk -d extracted\n# 找到 Assembly-CSharp.dll\n```\n\n### 2. 使用 dnSpy 分析\n\n1. 開啟 dnSpy\n2. 載入 Assembly-CSharp.dll\n3. 瀏覽類別結構\n4. 分析遊戲邏輯\n\n### 3. 修改代碼\n\n```csharp\n// 原始代碼\npublic class PlayerController : MonoBehaviour\n{\n    public float speed = 5f;\n    \n    void Update()\n    {\n        // 移動邏輯\n    }\n}\n\n// 修改後\npublic class PlayerController : MonoBehaviour\n{\n    public float speed = 10f; // 增加速度\n    \n    void Update()\n    {\n        // 修改後的移動邏輯\n    }\n}\n```\n\n## 實際案例\n\n以一個簡單的 Unity 遊戲為例，展示反編譯過程...\n\n## 注意事項\n\n* 僅用於學習目的\n* 遵守法律法規\n* 尊重智慧財產權\n\n## 總結\n\n反編譯是理解 Unity 遊戲架構的重要技術，但要注意合法使用。"
+    }
+  ]
+} 

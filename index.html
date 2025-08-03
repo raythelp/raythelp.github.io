@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>raythelp's Blog</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                <span>raythelp's Blog</span>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Archive</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="https://github.com/raythelp" class="nav-link" target="_blank">
+                    GitHub <i class="fas fa-external-link-alt"></i>
+                </a>
+            </nav>
+            <div class="header-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search..." id="searchInput">
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <i class="fas fa-dragon"></i>
+                </div>
+                <h3 class="profile-name">raythelp</h3>
+                <p class="profile-bio">CyberSecurity / GameDev</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-steam"></i></a>
+                    <a href="https://github.com/raythelp" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <h3 class="section-title">Categories</h3>
+                <ul class="category-list" id="categoryList">
+                    <!-- Categories will be populated by JavaScript -->
+                </ul>
+            </div>
+
+            <!-- Tags -->
+            <div class="sidebar-section">
+                <h3 class="section-title">Tags</h3>
+                <div class="tag-cloud" id="tagCloud">
+                    <!-- Tags will be populated by JavaScript -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Content -->
+        <section class="content">
+            <div class="posts-container" id="postsContainer">
+                <!-- Posts will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 
