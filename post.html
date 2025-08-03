@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My-Blog</title>
+    <title>Loading... - raythelp's Blog</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -43,15 +43,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             // 等待共用元件初始化完成
             setTimeout(() => {
-                // 載入分類和標籤
-                loadCategoriesAndTags();
-                
                 // 從 URL 獲取文章 ID
                 const urlParams = new URLSearchParams(window.location.search);
                 const postId = urlParams.get('id');
                 
                 if (!postId) {
                     document.getElementById('postContent').innerHTML = '<div class="loading">找不到文章</div>';
+                    document.title = '找不到文章 - raythelp\'s Blog';
                     return;
                 }
                 
@@ -60,40 +58,60 @@
             }, 200);
         });
         
-        // 載入分類和標籤
-        async function loadCategoriesAndTags() {
+        // 載入單篇文章
+        async function loadPost(postId) {
             try {
                 const response = await fetch('posts.json');
                 const data = await response.json();
-                const posts = data.posts || [];
+                const post = data.posts.find(p => p.id === postId);
                 
-                // 處理分類和標籤統計
-                const categories = {};
-                const tags = {};
+                if (!post) {
+                    document.getElementById('postContent').innerHTML = '<div class="loading">找不到文章</div>';
+                    document.title = '找不到文章 - raythelp\'s Blog';
+                    return;
+                }
                 
-                posts.forEach(post => {
-                    // 處理分類統計
-                    if (post.category) {
-                        categories[post.category] = (categories[post.category] || 0) + 1;
-                    }
-                    
-                    // 處理標籤統計
-                    if (post.tags) {
-                        post.tags.forEach(tag => {
-                            tags[tag] = (tags[tag] || 0) + 1;
-                        });
-                    }
-                });
+                // 更新頁面標題
+                document.title = `${post.title} - raythelp's Blog`;
                 
-                // 渲染分類
-                renderCategories(categories);
+                // 渲染文章內容
+                renderPost(post);
                 
-                // 渲染標籤
-                renderTags(tags);
+                // 載入側邊欄的分類和標籤
+                loadSidebarContent(data.posts);
                 
             } catch (error) {
-                console.error('載入分類和標籤時發生錯誤:', error);
+                console.error('載入文章時發生錯誤:', error);
+                document.getElementById('postContent').innerHTML = '<div class="loading">載入文章失敗</div>';
+                document.title = '載入失敗 - raythelp\'s Blog';
             }
+        }
+        
+        // 載入側邊欄內容
+        function loadSidebarContent(posts) {
+            // 處理分類和標籤統計
+            const categories = {};
+            const tags = {};
+            
+            posts.forEach(post => {
+                // 處理分類統計
+                if (post.category) {
+                    categories[post.category] = (categories[post.category] || 0) + 1;
+                }
+                
+                // 處理標籤統計
+                if (post.tags) {
+                    post.tags.forEach(tag => {
+                        tags[tag] = (tags[tag] || 0) + 1;
+                    });
+                }
+            });
+            
+            // 渲染分類
+            renderCategories(categories);
+            
+            // 渲染標籤
+            renderTags(tags);
         }
         
         // 渲染分類側邊欄
@@ -115,7 +133,7 @@
             document.querySelectorAll('.category-item').forEach(item => {
                 item.addEventListener('click', function() {
                     const category = this.dataset.category;
-                    window.location.href = `index.html?category=${category}`;
+                    window.location.href = `index.html?category=${encodeURIComponent(category)}`;
                 });
             });
         }
@@ -138,30 +156,9 @@
             document.querySelectorAll('.tag').forEach(tag => {
                 tag.addEventListener('click', function() {
                     const tagName = this.dataset.tag;
-                    window.location.href = `index.html?tag=${tagName}`;
+                    window.location.href = `index.html?tag=${encodeURIComponent(tagName)}`;
                 });
             });
-        }
-        
-        // 載入單篇文章
-        async function loadPost(postId) {
-            try {
-                const response = await fetch('posts.json');
-                const data = await response.json();
-                const post = data.posts.find(p => p.id === postId);
-                
-                if (!post) {
-                    document.getElementById('postContent').innerHTML = '<div class="loading">找不到文章</div>';
-                    return;
-                }
-                
-                // 渲染文章內容
-                renderPost(post);
-                
-            } catch (error) {
-                console.error('載入文章時發生錯誤:', error);
-                document.getElementById('postContent').innerHTML = '<div class="loading">載入文章失敗</div>';
-            }
         }
         
         // 渲染文章
@@ -199,4 +196,4 @@
         }
     </script>
 </body>
-</html> 
+</html>

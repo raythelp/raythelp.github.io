@@ -103,9 +103,10 @@ function renderPosts(postsToRender) {
 
 // 創建文章卡片 HTML
 function createPostCard(post) {
-    const wordCount = post.content ? post.content.split(' ').length : 0;
+    // 使用 Analytics.countWords 來正確計算字數
+    const wordCount = window.Analytics ? Analytics.countWords(post.content) : 0;
     const readingSpeed = window.SITE_CONFIG?.posts?.readingSpeed || 200;
-    const readingTime = Math.ceil(wordCount / readingSpeed);
+    const readingTime = Math.ceil(wordCount / readingSpeed) || 1; // 至少顯示 1 分鐘
     
     const tagsHTML = post.tags ? post.tags.map(tag => 
         `<span class="tag">${tag}</span>`
@@ -283,7 +284,7 @@ function formatDate(dateString) {
 // 工具函數：計算閱讀時間
 function calculateReadingTime(content) {
     const wordsPerMinute = window.SITE_CONFIG?.posts?.readingSpeed || 200;
-    const wordCount = content.split(' ').length;
+    const wordCount = window.Analytics ? Analytics.countWords(content) : content.split(' ').length;
     return Math.ceil(wordCount / wordsPerMinute);
 }
 
@@ -294,4 +295,4 @@ window.blogUtils = {
     performSearch,
     filterPostsByCategory,
     filterPostsByTag
-}; 
+};
