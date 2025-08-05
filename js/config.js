@@ -8,7 +8,8 @@ const SITE_CONFIG = {
     profile: {
         name: 'raythelp',
         bio: 'Basically an useless college student',
-        avatar: 'fas fa-dog', // Font Awesome 圖標
+        avatar: 'fas fa-dog', // Font Awesome 圖標（備用）
+        avatarImage: 'images/avatar.jpg', // 頭像圖片路徑
         socialLinks: {
             github: 'https://github.com/raythelp',
             instagram: 'https://www.instagram.com/_ray0530/',

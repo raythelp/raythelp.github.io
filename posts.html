@@ -46,10 +46,20 @@
         
         // 載入文章時間線
         async function loadPostsTimeline() {
+            const timelineContainer = document.getElementById('postsTimeline');
+            
+            // 顯示載入動畫
+            timelineContainer.innerHTML = '<div class="loading">正在載入文章時間線...</div>';
+            
             try {
                 const response = await fetch('posts.json');
                 const data = await response.json();
                 allPosts = data.posts || [];
+                
+                if (allPosts.length === 0) {
+                    timelineContainer.innerHTML = '<div class="loading">還沒有任何文章</div>';
+                    return;
+                }
                 
                 // 按年份分組文章
                 const postsByYear = groupPostsByYear(allPosts);
@@ -60,9 +70,17 @@
                 // 載入側邊欄的分類和標籤
                 loadSidebarContent();
                 
+                // 添加進入動畫
+                setTimeout(() => {
+                    document.querySelectorAll('.timeline-year').forEach((element, index) => {
+                        element.style.animationDelay = `${index * 0.1}s`;
+                        element.classList.add('fade-in');
+                    });
+                }, 100);
+                
             } catch (error) {
                 console.error('載入文章時發生錯誤:', error);
-                document.getElementById('postsTimeline').innerHTML = '<div class="loading">載入文章失敗</div>';
+                timelineContainer.innerHTML = '<div class="loading error">載入文章失敗，請重新整理頁面</div>';
             }
         }
         
@@ -176,18 +194,27 @@
                 return;
             }
             
-            const timelineHTML = Object.entries(postsByYear).map(([year, posts]) => `
-                <div class="timeline-year">
-                    <h2 class="year-title">${year}</h2>
-                    <div class="year-info">
-                        <span class="year-dot"></span>
-                        <span class="year-count">${posts.length} ${posts.length === 1 ? 'post' : 'posts'}</span>
-                    </div>
-                    <div class="year-posts">
-                        ${posts.map(post => createTimelinePost(post)).join('')}
-                    </div>
+            // 計算總文章數
+            const totalPosts = Object.values(postsByYear).reduce((sum, posts) => sum + posts.length, 0);
+            
+            const timelineHTML = `
+                <div class="timeline-header">
+                    <h1><i class="fas fa-clock"></i> 文章時間線</h1>
+                    <p class="timeline-stats">共 ${totalPosts} 篇文章，分佈在 ${Object.keys(postsByYear).length} 年</p>
                 </div>
-            `).join('');
+                ${Object.entries(postsByYear).map(([year, posts]) => `
+                    <div class="timeline-year">
+                        <h2 class="year-title">${year}</h2>
+                        <div class="year-info">
+                            <span class="year-dot"></span>
+                            <span class="year-count">${posts.length} ${posts.length === 1 ? '篇文章' : '篇文章'}</span>
+                        </div>
+                        <div class="year-posts">
+                            ${posts.map(post => createTimelinePost(post)).join('')}
+                        </div>
+                    </div>
+                `).join('')}
+            `;
             
             container.innerHTML = timelineHTML;
             
@@ -198,19 +225,45 @@
                     window.location.href = `post.html?id=${postId}`;
                 });
             });
+            
+            // 添加 hover 效果增強
+            document.querySelectorAll('.timeline-post').forEach(post => {
+                post.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(0.5rem) scale(1.02)';
+                });
+                
+                post.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0.25rem) scale(1)';
+                });
+            });
         }
         
         // 創建時間線文章項目
         function createTimelinePost(post) {
-            const date = post.date.split('-').slice(1).join('-'); // 只顯示月-日
+            const date = new Date(post.date);
+            const formattedDate = `${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
             const tags = post.tags ? post.tags.map(tag => `#${tag}`).join(' ') : '';
+            const excerpt = post.excerpt || '沒有摘要';
             
             return `
                 <div class="timeline-post" data-post-id="${post.id}">
-                    <div class="post-date">${date}</div>
+                    <div class="post-date">${formattedDate}</div>
                     <div class="post-content">
-                        <h3 class="post-title">${post.title}</h3>
+                        <h3 class="post-title">
+                            <i class="fas fa-file-alt"></i>
+                            ${post.title}
+                        </h3>
+                        <div class="post-meta">
+                            <span class="post-category">
+                                <i class="fas fa-folder"></i>
+                                ${post.category || '未分類'}
+                            </span>
+                        </div>
+                        <div class="post-excerpt">${excerpt}</div>
                         <div class="post-tags">${tags}</div>
+                    </div>
+                    <div class="post-arrow">
+                        <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
             `;

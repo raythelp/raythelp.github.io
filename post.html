@@ -21,6 +21,11 @@
             <div class="post-content" id="postContent">
                 <!-- 文章內容將由 JavaScript 動態生成 -->
             </div>
+            
+            <!-- 文章導航按鈕 -->
+            <div class="post-navigation" id="postNavigation">
+                <!-- 導航按鈕將由 JavaScript 動態生成 -->
+            </div>
         </section>
     </main>
 
@@ -35,6 +40,8 @@
     <script src="js/markdown.js"></script>
     <!-- 載入統計功能 -->
     <script src="js/analytics.js"></script>
+    <!-- 載入互動元素功能 -->
+    <script src="js/interactive.js"></script>
     <!-- 載入主要功能 -->
     <script src="js/main.js"></script>
     <!-- 載入文章頁面功能 -->
@@ -76,6 +83,9 @@
                 
                 // 渲染文章內容
                 renderPost(post);
+                
+                // 生成導航按鈕
+                generateNavigation(data.posts, postId);
                 
                 // 載入側邊欄的分類和標籤
                 loadSidebarContent(data.posts);
@@ -193,6 +203,65 @@
             `;
             
             container.innerHTML = postHtml;
+        }
+        
+        // 生成文章導航按鈕
+        function generateNavigation(posts, currentPostId) {
+            const navigationContainer = document.getElementById('postNavigation');
+            if (!navigationContainer) return;
+            
+            // 按日期排序文章（最新的在前）
+            const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // 找到當前文章的索引
+            const currentIndex = sortedPosts.findIndex(post => post.id === currentPostId);
+            
+            if (currentIndex === -1) {
+                navigationContainer.innerHTML = '';
+                return;
+            }
+            
+            // 獲取前一篇和後一篇文章
+            const prevPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
+            const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
+            
+            let navigationHtml = '';
+            
+            // 前一篇文章按鈕
+            if (prevPost) {
+                navigationHtml += `
+                    <a href="post.html?id=${prevPost.id}" class="nav-button prev">
+                        <div class="nav-button-icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="nav-button-content">
+                            <div class="nav-button-label">前一篇</div>
+                            <div class="nav-button-title">${prevPost.title}</div>
+                        </div>
+                    </a>
+                `;
+            } else {
+                navigationHtml += '<div class="nav-spacer"></div>';
+            }
+            
+            // 後一篇文章按鈕
+            if (nextPost) {
+                navigationHtml += `
+                    <a href="post.html?id=${nextPost.id}" class="nav-button next">
+                        <div class="nav-button-content">
+                            <div class="nav-button-label">後一篇</div>
+                            <div class="nav-button-title">${nextPost.title}</div>
+                        </div>
+                        <div class="nav-button-icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </a>
+                `;
+            } else {
+                navigationHtml += '<div class="nav-spacer"></div>';
+            }
+            
+            navigationContainer.innerHTML = navigationHtml;
         }
     </script>
 </body>
