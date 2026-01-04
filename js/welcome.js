@@ -28,7 +28,7 @@ function redirectToHome() {
     
     // 等待淡出動畫完成後跳轉
     setTimeout(() => {
-        window.location.href = 'index.html';
+        window.location.href = 'welcome.html';
     }, 800);
 }
 

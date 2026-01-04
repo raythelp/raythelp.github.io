@@ -279,11 +279,17 @@ const weatherAPI = {
 
     // 根據天氣描述返回對應圖示
     getWeatherIcon: function(weather) {
-        if (weather.includes('晴')) return '<i class="fas fa-sun"></i>';
-        if (weather.includes('多雲')) return '<i class="fas fa-cloud-sun"></i>';
-        if (weather.includes('陰')) return '<i class="fas fa-cloud"></i>';
-        if (weather.includes('雨')) return '<i class="fas fa-cloud-rain"></i>';
+        // 優先檢查特殊天氣現象（霾、霧、靄等能見度不良）
+        if (weather.includes('霾') || weather.includes('靄') || weather.includes('霧')) {
+            return '<i class="fas fa-smog"></i>';
+        }
+        // 檢查降水和雷電
         if (weather.includes('雷')) return '<i class="fas fa-bolt"></i>';
+        if (weather.includes('雨')) return '<i class="fas fa-cloud-rain"></i>';
+        // 檢查雲量
+        if (weather.includes('陰')) return '<i class="fas fa-cloud"></i>';
+        if (weather.includes('多雲')) return '<i class="fas fa-cloud-sun"></i>';
+        if (weather.includes('晴')) return '<i class="fas fa-sun"></i>';
         return '<i class="fas fa-cloud-sun"></i>';
     },
 
