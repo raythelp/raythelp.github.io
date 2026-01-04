@@ -1,0 +1,126 @@
+/* 聯絡我們頁面樣式 */
+
+.contact-content {
+    min-height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.contact-layout {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.contact-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-mascot {
+    width: 85%;
+    max-width: 350px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 50%;
+    background: white;
+    padding: 0px;
+    box-shadow: 0 10px 40px rgba(0, 153, 204, 0.2);
+}
+
+.contact-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-info-card {
+    background: rgba(240, 248, 255, 0.6);
+    border: 2px solid rgba(0, 153, 204, 0.2);
+    border-radius: 15px;
+    padding: 28px 32px;
+}
+
+.contact-title {
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    color: #003d5c !important;
+    margin: 0 0 20px 0 !important;
+    padding: 0 0 12px 0 !important;
+    display: block !important;
+    line-height: 1.3 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border-bottom: 2px solid rgba(0, 153, 204, 0.5);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 25px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.info-row:last-child {
+    margin-bottom: 0;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--secondary-color);
+    min-width: 110px;
+}
+
+.info-value {
+    color: #000000;
+    flex: 1;
+}
+
+@media (max-width: 968px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px;
+    }
+    
+    .contact-right h1 {
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    .contact-mascot {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-layout {
+        padding: 30px 20px;
+    }
+    
+    .info-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .info-label {
+        font-size: 16px;
+    }
+    
+    .info-value {
+        font-size: 16px;
+    }
+}

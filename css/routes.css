@@ -1,0 +1,439 @@
+/* 推薦路線頁面樣式 */
+
+.routes-grid {
+    padding: 120px 20px 80px;
+}
+
+.routes-grid .routes-actions-container {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.routes-grid .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.route-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.route-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.route-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.route-info {
+    padding: 30px;
+    max-width: 100%;
+}
+
+.route-info h3 {
+    font-size: 36px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding-right: 20px;
+    word-wrap: break-word;
+}
+
+.route-schedule {
+    padding-right: 20px;
+}
+
+.route-schedule p,
+.route-schedule ul {
+    margin-bottom: 12px;
+}
+
+.spots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.spot {
+    background: var(--light-bg);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.route-info .difficulty,
+.route-info .best-season {
+    margin-bottom: 10px;
+    color: #000000;
+    font-size: 16px;
+}
+
+.route-info .difficulty {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.route-tips {
+    padding: 80px 20px;
+    background: var(--light-bg);
+}
+
+.route-tips h2 {
+    text-align: center;
+    font-size: 36px;
+    color: var(--secondary-color);
+    margin-bottom: 50px;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-weight: 700;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.tip-card {
+    text-align: center;
+    padding: 30px;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.tip-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.tip-card h4 {
+    font-size: 22px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.tip-card p {
+    color: #000000;
+}
+
+/* 心理測驗模態框樣式 */
+.quiz-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.quiz-container {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.skip-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.skip-btn:hover {
+    background: #d32f2f;
+    transform: scale(1.05);
+}
+
+.quiz-content h2,
+.result-content h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transition: width 0.3s ease;
+}
+
+.question-container {
+    margin-bottom: 30px;
+}
+
+.question h3 {
+    color: var(--secondary-color);
+    font-size: 22px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--light-bg);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.option:hover {
+    background: #e3f2fd;
+    border-color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.option input[type="radio"] {
+    margin-right: 15px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+.option-text {
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+}
+
+.quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.quiz-btn {
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.quiz-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#prevBtn {
+    background: #9e9e9e;
+}
+
+#prevBtn:hover {
+    background: #757575;
+}
+
+/* 測驗結果樣式 */
+.result-content {
+    text-align: center;
+}
+
+.result-card {
+    background: var(--light-bg);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.result-card h3 {
+    color: var(--primary-color);
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.result-description {
+    color: var(--secondary-color);
+    font-size: 18px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.result-details {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.result-details h4 {
+    color: var(--accent-color);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.result-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.result-details li {
+    padding: 10px 15px;
+    background: white;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    color: #333;
+}
+
+/* 推薦路線卡片樣式 */
+.route-card.recommended {
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+}
+
+.route-card.recommended .route-info {
+    max-width: calc(100% - 450px);
+    margin-right: 450px;
+}
+
+.route-card.recommended img {
+    position: fixed;
+    right: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.route-schedule {
+    margin: 20px 0;
+}
+
+.route-schedule p {
+    margin: 10px 0;
+    line-height: 1.8;
+    color: #333;
+    font-size: 18px;
+}
+
+.route-schedule strong {
+    color: var(--secondary-color);
+}
+
+.route-schedule ul {
+    list-style: none;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.route-schedule li {
+    padding: 5px 0;
+    position: relative;
+    color: #444;
+    font-size: 17px;
+}
+
+.route-schedule li:before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+@media (max-width: 768px) {
+    .routes-hero h1 {
+        font-size: 32px;
+    }
+
+    .routes-grid .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .route-card.recommended img {
+        position: static;
+        transform: none;
+        width: 100%;
+        height: 250px;
+        border-radius: 0;
+    }
+    
+    .quiz-container {
+        padding: 25px;
+        max-width: 100%;
+    }
+    
+    .quiz-content h2,
+    .result-content h2 {
+        font-size: 22px;
+    }
+    
+    .skip-btn {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    
+    .question h3 {
+        font-size: 18px;
+    }
+    
+    .option {
+        padding: 12px 15px;
+    }
+    
+    .option-text {
+        font-size: 14px;
+    }
+}
+

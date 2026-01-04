@@ -1,0 +1,60 @@
+/* 關於我們頁面樣式 */
+
+.about-content {
+    padding: 120px 20px 80px;
+}
+
+.about-section,
+.mascot-section {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+.mascot-section {
+    flex-direction: row-reverse;
+}
+
+.about-section img,
+.mascot-section img {
+    width: 45%;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.text-content {
+    flex: 1;
+}
+
+.text-content h2 {
+    font-size: 36px;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-weight: 700;
+}
+
+.text-content p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #000000;
+}
+
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 32px;
+    }
+
+    .about-section,
+    .mascot-section {
+        flex-direction: column;
+    }
+
+    .about-section img,
+    .mascot-section img {
+        width: 100%;
+    }
+}
