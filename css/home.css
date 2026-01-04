@@ -582,40 +582,110 @@ body.theme-night .info-note {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .hero {
+        height: 70vh;
+        min-height: 400px;
+    }
+
     .hero-content h1 {
-        font-size: 36px;
+        font-size: 28px;
+        margin-bottom: 15px;
     }
 
     .hero-content p {
-        font-size: 18px;
+        font-size: 16px;
+        padding: 0 20px;
+    }
+
+    .mascot-intro {
+        padding: 50px 20px;
     }
 
     .mascot-intro .container {
         flex-direction: column;
         text-align: center;
+        gap: 30px;
     }
 
     .mascot-image {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
+    }
+
+    .mascot-text h2 {
+        font-size: 28px;
+    }
+
+    .mascot-text p {
+        font-size: 16px;
+    }
+
+    .photo-carousel-container {
+        padding: 0 40px;
+    }
+
+    .photo-slide {
+        height: 300px;
+    }
+
+    .photo-carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .photo-carousel-btn.prev {
+        left: 5px;
+    }
+
+    .photo-carousel-btn.next {
+        right: 5px;
+    }
+
+    .featured-spots,
+    .weather-section {
+        padding: 50px 20px;
     }
 
     .featured-spots h2,
     .weather-section h2 {
-        font-size: 32px;
+        font-size: 28px;
+        margin-bottom: 30px;
     }
 
     .spots-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .spot-card h3 {
+        font-size: 20px;
+    }
+
+    .spot-card p {
+        font-size: 14px;
     }
     
     .weather-info-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .weather-card {
+        padding: 25px;
+    }
+
+    .weather-card h3 {
+        font-size: 18px;
     }
     
     .sun-info {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
+    }
+
+    .sun-item {
+        width: 100%;
     }
 }
 

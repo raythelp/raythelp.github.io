@@ -180,47 +180,180 @@ body.theme-night nav {
 /* Mobile Menu Toggle */
 .menu-toggle {
     display: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1001;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    width: 50px;
+    height: 50px;
     flex-direction: column;
-    cursor: pointer;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .menu-toggle span {
     width: 25px;
     height: 3px;
-    background: var(--text-color);
+    background: white;
+    border-radius: 2px;
     transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Responsive Navigation */
 @media (max-width: 768px) {
+    nav {
+        padding: 0 15px;
+    }
+
+    .nav-container {
+        grid-template-columns: 1fr;
+        height: 70px;
+        justify-items: center;
+    }
+
+    .logo {
+        grid-column: 1;
+        background: transparent;
+    }
+
+    .logo::before,
+    .logo::after {
+        display: none;
+    }
+
+    .logo img {
+        width: 55px;
+        height: 55px;
+    }
+
     .nav-menu {
         position: fixed;
-        top: 80px;
+        top: 70px;
         left: -100%;
         flex-direction: column;
-        background: var(--white);
+        background: linear-gradient(135deg, rgba(0, 61, 92, 0.98) 0%, rgba(0, 153, 204, 0.98) 100%);
+        backdrop-filter: blur(10px);
         width: 100%;
-        padding: 30px;
-        box-shadow: var(--shadow);
-        transition: left 0.3s ease;
-        gap: 20px;
+        height: calc(100vh - 70px);
+        padding: 40px 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        display: flex;
+        gap: 0;
+    }
+
+    body.theme-night .nav-menu {
+        background: linear-gradient(135deg, rgba(15, 32, 39, 0.98) 0%, rgba(26, 35, 126, 0.98) 100%);
     }
 
     .nav-menu.active {
         left: 0;
     }
 
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-menu li a {
+        padding: 20px;
+        font-size: 18px;
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
     .menu-toggle {
         display: flex;
     }
+}
+
+    .nav-container {
+        grid-template-columns: 1fr;
+        height: 70px;
+        justify-items: center;
+    }
 
     .logo {
-        font-size: 20px;
+        grid-column: 1;
+        background: transparent;
+    }
+
+    .logo::before,
+    .logo::after {
+        display: none;
     }
 
     .logo img {
-        width: 40px;
-        height: 40px;
+        width: 55px;
+        height: 55px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: linear-gradient(135deg, rgba(0, 61, 92, 0.98) 0%, rgba(0, 153, 204, 0.98) 100%);
+        backdrop-filter: blur(10px);
+        width: 100%;
+        height: calc(100vh - 70px);
+        padding: 40px 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        gap: 0;
+        z-index: 999;
+    }
+
+    body.theme-night .nav-menu {
+        background: linear-gradient(135deg, rgba(15, 32, 39, 0.98) 0%, rgba(26, 35, 126, 0.98) 100%);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu:first-child,
+    .nav-menu:last-child {
+        grid-column: 1;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-menu li a {
+        padding: 20px;
+        font-size: 18px;
+        display: block;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: flex;
     }
 }

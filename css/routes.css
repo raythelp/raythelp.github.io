@@ -393,30 +393,65 @@
 }
 
 @media (max-width: 768px) {
+    .routes-hero {
+        padding: 80px 20px 60px;
+    }
+
     .routes-hero h1 {
-        font-size: 32px;
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .routes-hero p {
+        font-size: 16px;
     }
 
     .routes-grid .container {
         grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 0 20px;
+    }
+    
+    .route-card {
+        padding: 20px;
+    }
+
+    .route-card h3 {
+        font-size: 22px;
+    }
+
+    .route-card p {
+        font-size: 15px;
     }
     
     .route-card.recommended img {
         position: static;
         transform: none;
         width: 100%;
-        height: 250px;
+        height: 220px;
         border-radius: 0;
+        margin-bottom: 20px;
     }
     
     .quiz-container {
-        padding: 25px;
+        padding: 25px 20px;
         max-width: 100%;
+        margin: 20px;
     }
     
     .quiz-content h2,
     .result-content h2 {
         font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .quiz-options {
+        gap: 12px;
+    }
+
+    .quiz-option {
+        padding: 15px;
+        font-size: 15px;
     }
     
     .skip-btn {

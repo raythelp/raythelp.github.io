@@ -609,18 +609,62 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+
     .container {
-        padding: 0 15px;
+        padding: 0 20px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
     }
 
     .btn-primary, .btn-secondary {
-        padding: 10px 20px;
-        font-size: 14px;
+        padding: 12px 24px;
+        font-size: 15px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    footer {
+        padding: 40px 20px 20px;
     }
 
     .footer-content {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 18px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    /* 改善觸控體驗 */
+    a, button, input, select, textarea {
+        min-height: 44px;
+    }
+
+    /* 優化卡片間距 */
+    .card {
+        margin-bottom: 20px;
     }
 }
 
