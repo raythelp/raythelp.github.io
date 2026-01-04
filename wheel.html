@@ -17,7 +17,7 @@
                 <li><a href="events.html">在地美食</a></li>
                 <li><a href="routes.html">推薦路線</a></li>
             </ul>
-            <a href="index.html" class="logo" title="回到首頁">
+            <a href="welcome.html" class="logo" title="回到首頁">
                 <img src="images/mascot/logo.png" alt="牡蠣寶寶">
             </a>
             <ul class="nav-menu">
@@ -34,6 +34,25 @@
                 <h1>浪一浪轉盤</h1>
                 <p class="subtitle">不知道去哪玩？讓轉盤幫你決定！</p>
 
+                <!-- 自定義區域 -->
+                <div class="custom-spots-section">
+                    <h3>我想去的地方</h3>
+                    <div class="custom-controls">
+                        <div class="custom-select" id="spotSelectWrapper">
+                            <div class="custom-select-trigger" id="spotSelectTrigger">
+                                <span>從地圖選擇景點...</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="custom-select-options" id="spotSelectOptions"></div>
+                            <input type="hidden" id="spotSelect" value="">
+                        </div>
+                        <button id="addSpotBtn" class="btn-add">
+                            <i class="fas fa-plus"></i> 加入轉盤
+                        </button>
+                    </div>
+                    <div id="selectedSpotsList" class="selected-spots-list"></div>
+                </div>
+
                 <div class="wheel-container">
                     <canvas id="wheelCanvas" width="500" height="500"></canvas>
                     <div class="wheel-pointer"></div>
@@ -46,7 +65,7 @@
                     <div id="resultInfo" class="result-info"></div>
                 </div>
 
-                <div class="mascot-cheer">
+                <div id="mascotCheer" class="mascot-cheer" aria-hidden="true">
                     <img src="images/mascot/cheer.png" alt="牡蠣寶寶加油">
                     <p>"讓我們一起探索東石吧！"</p>
                 </div>
@@ -60,6 +79,7 @@
 
     <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/map.js"></script>
     <script src="js/wheel.js"></script>
 </body>
 </html>

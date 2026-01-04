@@ -324,11 +324,11 @@
 
 .result-details li {
     padding: 10px 15px;
-    background: white;
+    background: var(--light-bg);
     margin-bottom: 10px;
     border-radius: 8px;
     border-left: 4px solid var(--primary-color);
-    color: #333;
+    color: var(--text-color);
 }
 
 /* 推薦路線卡片樣式 */

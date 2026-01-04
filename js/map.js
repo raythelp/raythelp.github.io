@@ -1,6 +1,9 @@
 // 互動地圖 - Leaflet 版本
 (function(){
   const mapEl = document.getElementById('interactiveMap');
+  const spots = getSpotsData();
+  window.spots = spots;
+
   if (!mapEl || !window.L) return;
 
   // 東石周邊中心點
@@ -29,7 +32,8 @@
   // 景點/美食資料（不含圖片/難度/季節）
   // 座標來源：能在 OSM 查到者直接填入；查不到者先設為 null，避免亂標點。
   // region 對應頁面按鈕：north=景點、east=美食、south=廟宇、stay=住宿
-  const spots = [
+  function getSpotsData() {
+    return [
     // --- 景點 ---
     { id: 1, name: '東石漁港', lat: 23.4507319, lng: 120.1377473, region: 'north', type: '漁港', desc: '港邊散步看船景，感受東石海港日常。' },
     { id: 2, name: '東石漁人碼頭', lat: 23.4510879, lng: 120.1352919, region: 'north', type: '觀光碼頭', desc: '海風步道與拍照點，適合悠閒走走看海景。' },
@@ -85,7 +89,8 @@
     ,{ id: 201, name: '東石湛藍海寓民宿 Azure seaside house', lat: 23.457102133790244,  lng: 120.15173900806506, region: 'stay', type: '民宿', desc: '東石在地住宿選擇，適合安排漁港與周邊景點的小旅行。' }
     ,{ id: 202, name: '東石漁人碼頭愛琴海藝宿文旅', lat: 23.461917755359472,  lng: 120.1519541387483, region: 'stay', type: '民宿', desc: '以海港氛圍為主題的文旅住宿，適合想放慢步調的旅人。' }
     ,{ id: 203, name: '東石兜風民宿', lat: 23.45366543070754,  lng: 120.14087056758356, region: 'stay', type: '民宿', desc: '輕鬆樸實的民宿住宿點，方便當作東石一日或二日遊的落腳處。' }
-  ];
+    ];
+  }
 
   const markersGroup = L.layerGroup().addTo(map);
   const spotsListEl = document.getElementById('spotsList');

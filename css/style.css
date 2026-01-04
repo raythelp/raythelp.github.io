@@ -1,71 +1,86 @@
 /* 全站基本樣式 - 海風藍白主題 */
 :root {
-    --primary-color: #0099cc;  /* 海洋藍 */
-    --secondary-color: #003d5c;  /* 深海藍 */
-    --accent-color: #ff9f40;  /* 暖陽橘 */
-    --text-color: #2c3e50;
-    --light-bg: #e8f4f8;  /* 淺藍白 */
-    --white: #ffffff;
-    --shadow: 0 2px 15px rgba(0, 153, 204, 0.15);
+    --primary-color: #2a6a80;  /* 沉穩海藍 */
+    --secondary-color: #0f3446;  /* 深海藍 */
+    --accent-color: #b07a3a;  /* 低飽和暖棕橘 */
+    --text-color: #1f2a33;
+    --heading-color: #2a6a80;  /* 標題色 */
+    --light-bg: #e6eef2;  /* 低對比霧藍 */
+    --white: #f3f6f8;  /* 避免純白 */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     
     /* 時間主題背景 */
-    --bg-gradient-start: #87CEEB;
-    --bg-gradient-end: #E0F6FF;
-    --theme-overlay: rgba(0, 0, 0, 0.1);
+    --bg-gradient-start: #2a5c73;
+    --bg-gradient-end: #cfdde4;
+    --theme-overlay: rgba(0, 0, 0, 0.06);
 }
 
 /* 早晨主題 (5:00-10:00) */
 body.theme-morning {
-    --bg-gradient-start: #FFE5B4;
-    --bg-gradient-mid: #FFDAB9;
-    --bg-gradient-end: #FFD7A8;
-    --theme-overlay: rgba(255, 200, 150, 0.15);
-    --primary-color: #FF9A56;
-    --accent-color: #FFB347;
-    --celestial-color: #FFD700;
-    --celestial-glow: rgba(255, 215, 0, 0.6);
+    --bg-gradient-start: #cdbfb0;
+    --bg-gradient-mid: #d9d1c6;
+    --bg-gradient-end: #e6e2da;
+    --theme-overlay: rgba(0, 0, 0, 0.05);
+    --primary-color: #7a5a4a;
+    --secondary-color: #5d4037;
+    --accent-color: #c47a3a;
+    --text-color: #5d4037;
+    --heading-color: #c47a3a;
+    --white: #fff8f0;
+    --celestial-color: rgba(255, 235, 200, 0.55);
+    --celestial-glow: rgba(255, 235, 200, 0.18);
     --celestial-top: 10%;
 }
 
 /* 白天主題 (10:00-16:00) */
 body.theme-day {
-    --bg-gradient-start: #87CEEB;
-    --bg-gradient-mid: #9CD9F0;
-    --bg-gradient-end: #B0E7FF;
-    --theme-overlay: rgba(135, 206, 235, 0.1);
-    --primary-color: #0099cc;
-    --accent-color: #4FC3F7;
-    --celestial-color: #FFEB3B;
-    --celestial-glow: rgba(255, 235, 59, 0.8);
+    --bg-gradient-start: #2a5c73;
+    --bg-gradient-mid: #3b7188;
+    --bg-gradient-end: #cfdde4;
+    --theme-overlay: rgba(0, 0, 0, 0.06);
+    --primary-color: #2a6a80;
+    --secondary-color: #0f3446;
+    --accent-color: #b07a3a;
+    --text-color: #1f2a33;
+    --heading-color: #2a6a80;
+    --white: #f3f6f8;
+    --celestial-color: rgba(240, 245, 250, 0.55);
+    --celestial-glow: rgba(240, 245, 250, 0.18);
     --celestial-top: 10%;
 }
 
 /* 夕陽主題 (16:00-19:00) */
 body.theme-sunset {
-    --bg-gradient-start: #FF6B6B;
-    --bg-gradient-mid: #FF8A59;
-    --bg-gradient-end: #FFB347;
-    --theme-overlay: rgba(255, 107, 107, 0.2);
-    --primary-color: #FF7043;
-    --accent-color: #FFA726;
-    --celestial-color: #FF6347;
-    --celestial-glow: rgba(255, 99, 71, 0.7);
-    --celestial-top: 10%;
+    --bg-gradient-start: #4a3a50;  /* 暮紫 */
+    --bg-gradient-mid: #8b5a4a;    /* 暖褐橘 */
+    --bg-gradient-end: #d4a574;    /* 金橘 */
+    --theme-overlay: rgba(0, 0, 0, 0.07);
+    --primary-color: #6b4a3a;      /* 暖棕 */
+    --secondary-color: #4a3a50;
+    --accent-color: #d4956a;       /* 夕陽橘 */
+    --text-color: #3a2a25;
+    --heading-color: #d4956a;      /* 夕陽橘標題 */
+    --white: #fff5ee;              /* 暖白 */
+    --celestial-color: rgba(255, 180, 120, 0.6);
+    --celestial-glow: rgba(255, 150, 80, 0.25);
+    --celestial-top: 15%;
 }
 
 /* 夜晚主題 (19:00-5:00) */
 body.theme-night {
-    --bg-gradient-start: #1a237e;
-    --bg-gradient-mid: #283593;
-    --bg-gradient-end: #303f9f;
-    --theme-overlay: rgba(26, 35, 126, 0.3);
-    --primary-color: #5C6BC0;
-    --accent-color: #7E57C2;
-    --text-color: #e8eaf6;
-    --light-bg: #283593;
-    --secondary-color: #B0E7FF;
-    --celestial-color: #F0F0F0;
-    --celestial-glow: rgba(240, 240, 240, 0.5);
+    --bg-gradient-start: #0b2532;
+    --bg-gradient-mid: #163544;
+    --bg-gradient-end: #244353;
+    --theme-overlay: rgba(0, 0, 0, 0.22);
+    --primary-color: #5f8697;
+    --secondary-color: #0b2532;
+    --accent-color: #7ab8d4;
+    --text-color: #e7eef2;
+    --heading-color: #7ab8d4;      /* 夜晚淡藍標題 */
+    --light-bg: #163544;
+    --white: #e7eef2;
+    --celestial-color: rgba(243, 246, 248, 0.45);
+    --celestial-glow: rgba(243, 246, 248, 0.14);
     --celestial-top: 10%;
 }
 
@@ -83,7 +98,14 @@ body.theme-night h1,
 body.theme-night h2,
 body.theme-night h3,
 body.theme-night h4 {
-    color: #B0E7FF;
+    color: var(--heading-color);
+}
+
+/* 夜晚主題 footer - 與背景融合的深藍色調 */
+body.theme-night footer {
+    background: rgba(11, 37, 50, 0.45) !important;
+    border-top: 1px solid rgba(95, 134, 151, 0.25) !important;
+    backdrop-filter: blur(10px);
 }
 
 /* ===== 通用卡片主題樣式 ===== */
@@ -93,32 +115,35 @@ body.theme-morning .route-card,
 body.theme-morning .feature-card,
 body.theme-morning .event-card,
 body.theme-morning .card {
-    background: rgba(255, 248, 240, 0.95);
-    box-shadow: 0 5px 20px rgba(255, 183, 71, 0.3);
+    background: rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 body.theme-morning .route-card:hover,
 body.theme-morning .feature-card:hover,
 body.theme-morning .event-card:hover,
 body.theme-morning .card:hover {
-    box-shadow: 0 8px 30px rgba(255, 183, 71, 0.4);
+    background: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 body.theme-morning .route-info h3,
 body.theme-morning .feature-card h3,
 body.theme-morning .event-card h3,
 body.theme-morning .card h3 {
-    color: #FF9A56;
+    color: #5d4037;
 }
 
 body.theme-morning .route-schedule p,
 body.theme-morning .route-schedule li,
 body.theme-morning p {
-    color: #5d4037;
+    color: #4a3a30;
 }
 
 body.theme-morning strong {
-    color: #FF9A56;
+    color: #8b5a3a;
 }
 
 /* 白天主題卡片（預設） */
@@ -126,7 +151,38 @@ body.theme-day .route-card,
 body.theme-day .feature-card,
 body.theme-day .event-card,
 body.theme-day .card {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+body.theme-day .route-card:hover,
+body.theme-day .feature-card:hover,
+body.theme-day .event-card:hover,
+body.theme-day .card:hover {
+    background: rgba(0, 0, 0, 0.16);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+body.theme-day .route-info h3,
+body.theme-day .feature-card h3,
+body.theme-day .event-card h3,
+body.theme-day .card h3 {
+    color: var(--white);
+}
+
+body.theme-day .route-card p,
+body.theme-day .feature-card p,
+body.theme-day .event-card p,
+body.theme-day .card p,
+body.theme-day .route-schedule p,
+body.theme-day .route-schedule li {
+    color: rgba(243, 246, 248, 0.9);
+}
+
+body.theme-day strong {
+    color: var(--accent-color);
 }
 
 /* 夕陽主題卡片 */
@@ -134,37 +190,44 @@ body.theme-sunset .route-card,
 body.theme-sunset .feature-card,
 body.theme-sunset .event-card,
 body.theme-sunset .card {
-    background: rgba(255, 245, 235, 0.95);
-    box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 body.theme-sunset .route-card:hover,
 body.theme-sunset .feature-card:hover,
 body.theme-sunset .event-card:hover,
 body.theme-sunset .card:hover {
-    box-shadow: 0 8px 30px rgba(255, 107, 107, 0.4);
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
 
 body.theme-sunset .route-info h3,
 body.theme-sunset .feature-card h3,
 body.theme-sunset .event-card h3,
 body.theme-sunset .card h3 {
-    color: #FF7043;
+    color: #f0c896;  /* 暖金標題 */
 }
 
+/* 夕陽卡片內文字改淺色 */
+body.theme-sunset .route-card p,
+body.theme-sunset .feature-card p,
+body.theme-sunset .event-card p,
+body.theme-sunset .card p,
 body.theme-sunset .route-schedule p,
-body.theme-sunset .route-schedule li,
-body.theme-sunset p {
-    color: #4a2c2a;
+body.theme-sunset .route-schedule li {
+    color: rgba(255, 245, 238, 0.9);
 }
 
 body.theme-sunset strong {
-    color: #FF7043;
+    color: #f0c896;
 }
 
 body.theme-sunset .spot {
-    background: rgba(255, 179, 71, 0.3);
-    color: #d84315;
+    background: rgba(212, 149, 106, 0.4);
+    color: #f0c896;
 }
 
 /* 夜晚主題卡片 */
@@ -172,22 +235,25 @@ body.theme-night .route-card,
 body.theme-night .feature-card,
 body.theme-night .event-card,
 body.theme-night .card {
-    background: rgba(40, 53, 147, 0.85);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 body.theme-night .route-card:hover,
 body.theme-night .feature-card:hover,
 body.theme-night .event-card:hover,
 body.theme-night .card:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
 }
 
 body.theme-night .route-info h3,
 body.theme-night .feature-card h3,
 body.theme-night .event-card h3,
 body.theme-night .card h3 {
-    color: #B0E7FF;
+    color: var(--heading-color);
 }
 
 body.theme-night .route-schedule p,
@@ -195,7 +261,7 @@ body.theme-night .route-schedule li,
 body.theme-night .card p,
 body.theme-night .feature-card p,
 body.theme-night .event-card p {
-    color: #e8eaf6;
+    color: var(--text-color);
 }
 
 body.theme-night strong {
@@ -313,13 +379,13 @@ body::before {
 body::after {
     content: '';
     position: fixed;
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     background: var(--celestial-color);
     top: var(--celestial-top);
     right: 10%;
-    box-shadow: 0 0 60px var(--celestial-glow), 0 0 100px var(--celestial-glow);
+    box-shadow: 0 0 18px var(--celestial-glow), 0 0 36px var(--celestial-glow);
     z-index: 0;
     transition: all 2s ease;
     pointer-events: none;
@@ -354,7 +420,7 @@ body > * {
     height: 40px;
     top: 15%;
     left: 10%;
-    animation: floatCloud1 25s infinite ease-in-out;
+    animation: none;
 }
 
 .cloud-1::before {
@@ -376,7 +442,7 @@ body > * {
     height: 50px;
     top: 35%;
     right: 12%;
-    animation: floatCloud2 30s infinite ease-in-out;
+    animation: none;
 }
 
 .cloud-2::before {
@@ -398,7 +464,7 @@ body > * {
     height: 35px;
     top: 55%;
     left: 15%;
-    animation: floatCloud3 28s infinite ease-in-out;
+    animation: none;
 }
 
 .cloud-3::before {
@@ -459,9 +525,9 @@ body > * {
     position: absolute;
     width: 2px;
     height: 2px;
-    background: white;
+    background: rgba(243, 246, 248, 0.9);
     border-radius: 50%;
-    animation: twinkle 3s infinite;
+    animation: none;
 }
 
 @keyframes twinkle {
@@ -497,8 +563,7 @@ body > * {
 
 .btn-primary:hover {
     background: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 168, 204, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
 }
 
 .btn-secondary {
@@ -513,17 +578,16 @@ body > * {
     font-size: 18px;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 153, 204, 0.4);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .btn-secondary:hover {
-    background: var(--accent-color);
-    border-color: var(--accent-color);
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
     color: var(--white);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 159, 64, 0.5);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
 /* 夜晚模式按鈕樣式 */
@@ -544,12 +608,33 @@ main {
     flex: 1;
 }
 
-/* Footer */
+/* Footer - 微區隔但不強烈對比 */
 footer {
-    background: var(--secondary-color);
+    background: rgba(0, 0, 0, 0.15);
     color: var(--white);
-    padding: 40px 20px 20px;
+    padding: 40px 20px 30px;
     margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--white);
+    opacity: 0.7;
+    letter-spacing: 0.3px;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: var(--white);
 }
 
 .footer-content {
@@ -588,6 +673,7 @@ footer {
 .social-icons {
     display: flex;
     gap: 15px;
+    justify-content: center;
 }
 
 .social-icons a img {

@@ -15,10 +15,12 @@
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(10px);
     padding: 60px;
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .contact-left {
@@ -34,9 +36,9 @@
     aspect-ratio: 1 / 1;
     object-fit: contain;
     border-radius: 50%;
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     padding: 0px;
-    box-shadow: 0 10px 40px rgba(0, 153, 204, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .contact-right {
@@ -46,8 +48,8 @@
 }
 
 .contact-info-card {
-    background: rgba(240, 248, 255, 0.6);
-    border: 2px solid rgba(0, 153, 204, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 15px;
     padding: 28px 32px;
 }
@@ -55,15 +57,15 @@
 .contact-title {
     font-size: 28px !important;
     font-weight: 700 !important;
-    color: #003d5c !important;
+    color: var(--white) !important;
     margin: 0 0 20px 0 !important;
     padding: 0 0 12px 0 !important;
     display: block !important;
     line-height: 1.3 !important;
     opacity: 1 !important;
     visibility: visible !important;
-    border-bottom: 2px solid rgba(0, 153, 204, 0.5);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     letter-spacing: 0.5px;
 }
 
@@ -80,12 +82,12 @@
 
 .info-label {
     font-weight: 600;
-    color: var(--secondary-color);
+    color: var(--accent-color);
     min-width: 110px;
 }
 
 .info-value {
-    color: #000000;
+    color: var(--white);
     flex: 1;
 }
 
@@ -93,16 +95,17 @@
     .contact-layout {
         grid-template-columns: 1fr;
         gap: 40px;
-        padding: 40px;
+        padding: 40px 20px;
     }
     
     .contact-right h1 {
-        font-size: 32px;
+        font-size: 28px;
         text-align: center;
     }
     
     .contact-mascot {
-        max-width: 300px;
+        max-width: 280px;
+        margin: 0 auto;
     }
 }
 
@@ -113,11 +116,31 @@
     
     .info-row {
         flex-direction: column;
-        gap: 5px;
+        gap: 8px;
+        align-items: flex-start;
     }
     
     .info-label {
         font-size: 16px;
+    }
+
+    .info-value {
+        font-size: 15px;
+        padding-left: 0;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 16px;
+        min-height: 48px;
+    }
+
+    .contact-form button {
+        font-size: 16px;
+        padding: 14px;
+        min-height: 52px;
+    }
+}
     }
     
     .info-value {
