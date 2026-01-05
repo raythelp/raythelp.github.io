@@ -438,6 +438,19 @@ class WheelOfSurf {
             <p class="spot-description">${spot.desc}</p>
         `;
 
+        // 設定前往地圖按鈕的連結
+        const goToMapBtn = document.getElementById('goToMapBtn');
+        if (goToMapBtn) {
+            const mapUrl = `map.html?spotId=${spot.id}&spotName=${encodeURIComponent(spot.name)}`;
+            goToMapBtn.href = mapUrl;
+            
+            // 移除舊的事件監聽器並添加新的
+            goToMapBtn.onclick = function(e) {
+                e.preventDefault();
+                window.location.href = mapUrl;
+            };
+        }
+
         setTimeout(() => {
             this.resultDisplay.classList.add('show');
             if (this.mascotCheer) {

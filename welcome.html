@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東石鄉觀光旅遊網 - 探索嘉義東石的海洋魅力</title>
+    <title>浪在東石網站</title>
+    <link rel="icon" type="image/png" href="images/mascot/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/nav.css">
@@ -31,9 +32,12 @@
     <main>
         <!-- Hero Section with Video -->
         <section class="hero">
-            <video autoplay muted loop class="hero-video">
-                <source src="videos/intro.mp4" type="video/mp4">
-            </video>
+            <iframe class="hero-video" 
+                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=YOUR_VIDEO_ID&controls=0&showinfo=0&rel=0"
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
+            </iframe>
         </section>
 
         <!-- Photo Carousel (照片輪播區) -->
@@ -46,22 +50,22 @@
                 <div class="photo-carousel-wrapper">
                     <div class="photo-carousel-track">
                         <div class="photo-slide">
-                            <img src="images/hero/spot1.jpg">
+                            <img src="images/hero/spot1.jpg" loading="lazy" alt="東石景點1">
                         </div>
                         <div class="photo-slide">
-                            <img src="images/hero/spot2.jpg">
+                            <img src="images/hero/spot2.jpg" loading="lazy" alt="東石景點2">
                         </div>
                         <div class="photo-slide">
-                            <img src="images/hero/spot3.jpg">
+                            <img src="images/hero/spot3.jpg" loading="lazy" alt="東石景點3">
                         </div>
                         <div class="photo-slide">
-                            <img src="images/hero/spot4.jpg">
+                            <img src="images/hero/spot4.jpg" loading="lazy" alt="東石景點4">
                         </div>
                         <div class="photo-slide">
-                            <img src="images/hero/spot5.jpg">
+                            <img src="images/hero/spot5.jpg" loading="lazy" alt="東石景點5">
                         </div>
                         <div class="photo-slide">
-                            <img src="images/hero/spot6.jpg">
+                            <img src="images/hero/spot6.jpg" loading="lazy" alt="東石景點6">
                         </div>
                     </div>
                 </div>
@@ -239,23 +243,25 @@
                 <h4>關於東石</h4>
                 <ul>
                     <li><a href="about.html">東石特色</a></li>
+                    <li><a href="events.html">在地美食</a></li>
                     <li><a href="contact.html">聯絡我們</a></li>
+                    
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>快速連結</h4>
                 <ul>
                     <li><a href="routes.html">推薦路線</a></li>
-                    <li><a href="events.html">在地美食</a></li>
                     <li><a href="map.html">互動地圖</a></li>
+                    <li><a href="team-gallery.html">團隊相簿</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>追蹤我們</h4>
                 <div class="social-icons">
-                    <a href="#" style="font-size: 2rem; color: white; margin: 0 10px;"><i class="fab fa-facebook"></i></a>
-                    <a href="#" style="font-size: 2rem; color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
-                    <a href="#" style="font-size: 2rem; color: white; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://github.com/raythelp" target="_blank" rel="noopener noreferrer" style="font-size: 2rem; color: white; margin: 0 10px;" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://instagram.com/easts.tone" target="_blank" rel="noopener noreferrer" style="font-size: 2rem; color: white; margin: 0 10px;" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@YOUR_YOUTUBE_CHANNEL" target="_blank" rel="noopener noreferrer" style="font-size: 2rem; color: white; margin: 0 10px;" title="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>

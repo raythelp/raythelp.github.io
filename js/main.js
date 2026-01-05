@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navContainer = document.querySelector('.nav-container');
     const navMenus = document.querySelectorAll('.nav-menu');
     let isMenuOpen = false;
+    let mobileMenuWrapper = null;
     
     // 防抖函數
     function debounce(func, wait) {
@@ -20,10 +21,48 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
     
+    // 創建手機端統一選單
+    function createMobileMenu() {
+        if (mobileMenuWrapper) return;
+        
+        mobileMenuWrapper = document.createElement('div');
+        mobileMenuWrapper.className = 'mobile-menu-wrapper';
+        
+        // 收集所有導航項目
+        const allItems = [];
+        navMenus.forEach(menu => {
+            const items = menu.querySelectorAll('li');
+            items.forEach(item => {
+                allItems.push(item.cloneNode(true));
+            });
+        });
+        
+        // 創建統一的選單列表
+        const mobileMenu = document.createElement('ul');
+        mobileMenu.className = 'mobile-menu';
+        allItems.forEach(item => {
+            mobileMenu.appendChild(item);
+        });
+        
+        mobileMenuWrapper.appendChild(mobileMenu);
+        navContainer.appendChild(mobileMenuWrapper);
+    }
+    
+    // 移除手機端統一選單
+    function removeMobileMenu() {
+        if (mobileMenuWrapper) {
+            mobileMenuWrapper.remove();
+            mobileMenuWrapper = null;
+        }
+    }
+    
     // 初始化手機選單功能
     function initMobileMenu() {
         // 只在手機螢幕下創建漢堡選單按鈕
         if (window.innerWidth <= 768 && !document.querySelector('.menu-toggle')) {
+            // 創建統一的手機選單
+            createMobileMenu();
+            
             const menuToggle = document.createElement('button');
             menuToggle.className = 'menu-toggle';
             menuToggle.setAttribute('aria-label', '選單');
@@ -37,7 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 isMenuOpen = !isMenuOpen;
                 this.classList.toggle('active');
                 this.setAttribute('aria-expanded', isMenuOpen);
-                navMenus.forEach(menu => menu.classList.toggle('active'));
+                if (mobileMenuWrapper) {
+                    mobileMenuWrapper.classList.toggle('active');
+                }
                 document.body.style.overflow = isMenuOpen ? 'hidden' : '';
             });
         }
@@ -50,7 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
             isMenuOpen = false;
             menuToggle.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
-            navMenus.forEach(menu => menu.classList.remove('active'));
+            if (mobileMenuWrapper) {
+                mobileMenuWrapper.classList.remove('active');
+            }
             document.body.style.overflow = '';
         }
     }
@@ -58,13 +101,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化
     initMobileMenu();
 
-    // 點擊導覽連結後關閉選單
-    navMenus.forEach(menu => {
-        menu.addEventListener('click', function(e) {
-            if (e.target.tagName === 'A' && window.innerWidth <= 768) {
+    // 點擊導覽連結後關閉選單（包括手機選單）
+    document.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A' && window.innerWidth <= 768) {
+            const isInsideMenu = e.target.closest('.mobile-menu-wrapper') || 
+                                 e.target.closest('.nav-menu');
+            if (isInsideMenu) {
                 closeMenu();
             }
-        });
+        }
     });
 
     // 點擊選單外部關閉選單
@@ -82,15 +127,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const menuToggle = document.querySelector('.menu-toggle');
         
         if (window.innerWidth > 768) {
-            // 電腦端：移除漢堡按鈕和重置狀態
+            // 電腦端：移除漢堡按鈕和手機選單，重置狀態
             if (menuToggle) {
                 menuToggle.remove();
             }
-            navMenus.forEach(menu => menu.classList.remove('active'));
+            removeMobileMenu();
             document.body.style.overflow = '';
             isMenuOpen = false;
         } else {
-            // 手機端：確保漢堡按鈕存在
+            // 手機端：確保漢堡按鈕和手機選單存在
             initMobileMenu();
         }
     }, 250);

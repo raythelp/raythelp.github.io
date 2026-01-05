@@ -408,29 +408,39 @@ const weatherAPI = {
     }
 };
 
-// 當頁面載入時初始化天氣小工具
+// 當頁面載入時初始化天氣小工具（使用 requestIdleCallback 避免阻塞渲染）
 document.addEventListener('DOMContentLoaded', function() {
-    const weatherWidget = document.getElementById('weatherWidget');
-    if (weatherWidget) {
-        // 只顯示一個地點的天氣資訊
-        weatherAPI.displayWeatherWidget('weatherWidget', ['東石']);
-    }
+    // 延遲載入天氣資料，讓頁面先渲染完成
+    const loadWeatherData = () => {
+        const weatherWidget = document.getElementById('weatherWidget');
+        if (weatherWidget) {
+            // 只顯示一個地點的天氣資訊
+            weatherAPI.displayWeatherWidget('weatherWidget', ['東石']);
+        }
 
-    // 載入潮汐資料
-    const highTideElement = document.getElementById('highTide');
-    const lowTideElement = document.getElementById('lowTide');
-    if (highTideElement && lowTideElement) {
-        weatherAPI.getTideData().then(tideData => {
-            if (tideData) {
-                highTideElement.textContent = tideData.highTide;
-                lowTideElement.textContent = tideData.lowTide;
-                console.log('✓ 潮汐資料已更新');
-            } else {
-                highTideElement.textContent = '資料載入失敗';
-                lowTideElement.textContent = '資料載入失敗';
-                console.error('✗ 無法取得潮汐資料');
-            }
-        });
+        // 載入潮汐資料
+        const highTideElement = document.getElementById('highTide');
+        const lowTideElement = document.getElementById('lowTide');
+        if (highTideElement && lowTideElement) {
+            weatherAPI.getTideData().then(tideData => {
+                if (tideData) {
+                    highTideElement.textContent = tideData.highTide;
+                    lowTideElement.textContent = tideData.lowTide;
+                    console.log('✓ 潮汐資料已更新');
+                } else {
+                    highTideElement.textContent = '資料載入失敗';
+                    lowTideElement.textContent = '資料載入失敗';
+                    console.error('✗ 無法取得潮汐資料');
+                }
+            });
+        }
+    };
+
+    // 使用 requestIdleCallback 或 setTimeout 延遲載入
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadWeatherData, { timeout: 2000 });
+    } else {
+        setTimeout(loadWeatherData, 100);
     }
 
     // 載入日出日落資料

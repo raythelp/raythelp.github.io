@@ -191,6 +191,7 @@ body.theme-night nav {
         grid-template-columns: 1fr;
         height: 70px;
         justify-items: center;
+        position: relative;
     }
 
     .logo {
@@ -208,55 +209,77 @@ body.theme-night nav {
         height: 55px;
     }
 
-    /* 選單容器 - 合併成一個完整的垂直選單 */
+    /* 隱藏原本的兩個 nav-menu，改用統一的手機選單 */
     .nav-menu {
+        display: none !important;
+    }
+
+    /* 手機端統一選單容器 */
+    .mobile-menu-wrapper {
         position: fixed;
         top: 70px;
         left: -100%;
-        flex-direction: column;
-        background: rgba(15, 52, 70, 0.96);
-        backdrop-filter: blur(10px);
         width: 100%;
         height: calc(100vh - 70px);
-        padding: 30px 20px;
+        background: rgba(15, 52, 70, 0.96);
+        backdrop-filter: blur(10px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
         transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 999;
-        display: flex;
-        gap: 0;
         overflow-y: auto;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
+        padding: 30px 20px;
     }
 
-    body.theme-night .nav-menu {
+    body.theme-night .mobile-menu-wrapper {
         background: rgba(11, 37, 50, 0.96);
     }
 
-    .nav-menu.active {
+    .mobile-menu-wrapper.active {
         left: 0;
     }
 
-    .nav-menu li {
+    /* 統一選單列表 */
+    .mobile-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+
+    .mobile-menu li {
         width: 100%;
         text-align: center;
-        border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .nav-menu li:last-child {
+    .mobile-menu li:last-child {
         border-bottom: none;
     }
 
-    .nav-menu li a {
-        padding: 18px 20px;
+    .mobile-menu li a {
+        color: rgba(255, 255, 255, 0.95);
+        text-decoration: none;
+        font-weight: 600;
         font-size: 18px;
-        display: block;
-        width: 100%;
-        height: auto;
-        min-height: 54px;
+        padding: 18px 20px;
         display: flex;
+        width: 100%;
+        min-height: 54px;
         align-items: center;
         justify-content: center;
+        letter-spacing: 1.2px;
+        transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .mobile-menu li a:hover,
+    .mobile-menu li a.active {
+        background: rgba(255, 255, 255, 0.08);
     }
 
     .menu-toggle {

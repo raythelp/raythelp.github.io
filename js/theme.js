@@ -41,11 +41,11 @@ class ThemeManager {
         
         document.body.insertBefore(cloudContainer, document.body.firstChild);
 
-        // 創建星星
+        // 創建星星 (減少數量提升效能)
         const starContainer = document.createElement('div');
         starContainer.className = 'star-container';
         
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 30; i++) {
             const star = document.createElement('div');
             star.className = 'star';
             star.style.left = `${Math.random() * 100}%`;

@@ -171,6 +171,9 @@
     cursor: pointer;
     font-size: 14px;
     transition: all 0.3s ease;
+    z-index: 10;
+    min-width: 100px;
+    text-align: center;
 }
 
 .skip-btn:hover {
@@ -184,6 +187,8 @@
     color: var(--primary-color);
     margin-bottom: 30px;
     font-size: 28px;
+    padding-right: 100px;
+    padding-left: 100px;
 }
 
 .progress-bar {

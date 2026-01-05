@@ -313,9 +313,44 @@
     });
   }
 
+  // 處理從轉盤頁面跳轉過來的參數
+  function handleUrlParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const spotId = urlParams.get('spotId');
+    
+    if (spotId) {
+      const spot = spots.find(s => s.id === parseInt(spotId));
+      if (spot && typeof spot.lat === 'number' && typeof spot.lng === 'number') {
+        // 延遲執行以確保地圖和標記已載入
+        setTimeout(() => {
+          // 移動地圖到該景點
+          map.setView([spot.lat, spot.lng], 15);
+          
+          // 打開該景點的 popup
+          const marker = markers[spot.id];
+          if (marker) {
+            marker.openPopup();
+          }
+          
+          // 顯示景點資訊面板
+          showSpotInfo(spot);
+          
+          // 高亮該景點卡片
+          highlightCard(spot.id);
+          
+          // 清除 URL 參數（避免重新整理時重複觸發）
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }, 500);
+      }
+    }
+  }
+
   // 初始
   renderMarkers('all');
   renderSpotsList('all');
+
+  // 處理 URL 參數（從轉盤跳轉）
+  handleUrlParams();
 
   // 背景自動查詢缺少的座標，查到就自動補點（查不到維持 disabled 避免錯標）
   fillMissingCoords();
