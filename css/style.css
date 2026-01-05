@@ -774,3 +774,52 @@ footer a:hover {
 .pb-40 {
     padding-bottom: 40px;
 }
+
+/* ===== 圖片載入優化 ===== */
+
+/* 圖片預設佔位樣式 */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 懶載入圖片淡入效果 */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+img[loading="lazy"].loaded,
+img.loaded {
+    opacity: 1;
+}
+
+/* Logo 圖片優先載入，不需要淡入效果 */
+.logo img,
+img[loading="eager"] {
+    opacity: 1;
+}
+
+/* 圖片佔位背景色 */
+img[loading="lazy"]:not(.loaded) {
+    background-color: var(--light-bg);
+}
+
+/* 防止圖片載入時的版面跳動 */
+.route-card img,
+.about-section img,
+.mascot-section img,
+.event-card img,
+.gallery-grid img {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+/* 方形圖片（吉祥物等） */
+.logo img,
+.welcome-logo,
+.contact-mascot,
+.mascot-image {
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+}

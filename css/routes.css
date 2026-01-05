@@ -148,7 +148,7 @@
 }
 
 .quiz-container {
-    background: var(--white);
+    background: linear-gradient(135deg, rgba(42, 92, 115, 0.85), rgba(15, 52, 70, 0.9));
     border-radius: 20px;
     padding: 40px;
     max-width: 700px;
@@ -157,6 +157,7 @@
     overflow-y: auto;
     position: relative;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .skip-btn {
@@ -184,17 +185,18 @@
 .quiz-content h2,
 .result-content h2 {
     text-align: center;
-    color: var(--primary-color);
+    color: #ffffff;
     margin-bottom: 30px;
     font-size: 28px;
     padding-right: 100px;
     padding-left: 100px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .progress-bar {
     width: 100%;
     height: 8px;
-    background: #e0e0e0;
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     margin-bottom: 30px;
     overflow: hidden;
@@ -211,10 +213,11 @@
 }
 
 .question h3 {
-    color: var(--secondary-color);
+    color: #ffffff;
     font-size: 22px;
     margin-bottom: 25px;
     line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .options {
@@ -227,16 +230,16 @@
     display: flex;
     align-items: center;
     padding: 15px 20px;
-    background: var(--light-bg);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .option:hover {
-    background: #e3f2fd;
-    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.25);
+    border-color: var(--accent-color);
     transform: translateX(5px);
 }
 
@@ -250,7 +253,8 @@
 .option-text {
     flex: 1;
     font-size: 16px;
-    color: #333;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .quiz-nav {
@@ -292,20 +296,22 @@
 }
 
 .result-card {
-    background: var(--light-bg);
+    background: rgba(42, 92, 115, 0.3);
     border-radius: 15px;
     padding: 30px;
     margin-bottom: 30px;
+    backdrop-filter: blur(5px);
 }
 
 .result-card h3 {
-    color: var(--primary-color);
+    color: #ffffff;
     font-size: 26px;
     margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .result-description {
-    color: var(--secondary-color);
+    color: #e0e0e0;
     font-size: 18px;
     margin-bottom: 25px;
     line-height: 1.6;
@@ -329,11 +335,11 @@
 
 .result-details li {
     padding: 10px 15px;
-    background: var(--light-bg);
+    background: rgba(255, 255, 255, 0.15);
     margin-bottom: 10px;
     border-radius: 8px;
-    border-left: 4px solid var(--primary-color);
-    color: var(--text-color);
+    border-left: 4px solid var(--accent-color);
+    color: #ffffff;
 }
 
 /* 推薦路線卡片樣式 */
@@ -475,5 +481,132 @@
     .option-text {
         font-size: 14px;
     }
+}
+
+/* ===== 時間主題樣式 ===== */
+
+/* 早晨主題 */
+body.theme-morning .quiz-container {
+    background: linear-gradient(135deg, rgba(205, 191, 176, 0.9), rgba(93, 64, 55, 0.85));
+}
+
+body.theme-morning .result-card {
+    background: rgba(122, 90, 74, 0.3);
+}
+
+body.theme-morning .result-details li {
+    background: rgba(196, 122, 58, 0.2);
+    border-left-color: var(--accent-color);
+}
+
+body.theme-morning .progress {
+    background: linear-gradient(90deg, #7a5a4a, #c47a3a);
+}
+
+/* 白天主題 */
+body.theme-day .quiz-container {
+    background: linear-gradient(135deg, rgba(42, 92, 115, 0.85), rgba(15, 52, 70, 0.9));
+}
+
+body.theme-day .result-card {
+    background: rgba(42, 106, 128, 0.3);
+}
+
+body.theme-day .result-details li {
+    background: rgba(42, 106, 128, 0.2);
+    border-left-color: var(--accent-color);
+}
+
+body.theme-day .progress {
+    background: linear-gradient(90deg, #2a6a80, #b07a3a);
+}
+
+/* 夕陽主題 */
+body.theme-sunset .quiz-container {
+    background: linear-gradient(135deg, rgba(74, 58, 80, 0.9), rgba(139, 90, 74, 0.85));
+}
+
+body.theme-sunset .result-card {
+    background: rgba(107, 74, 58, 0.3);
+}
+
+body.theme-sunset .result-card h3 {
+    color: #fff5ee;
+}
+
+body.theme-sunset .result-details li {
+    background: rgba(212, 149, 106, 0.25);
+    border-left-color: var(--accent-color);
+}
+
+body.theme-sunset .progress {
+    background: linear-gradient(90deg, #6b4a3a, #d4956a);
+}
+
+/* 夜晚主題 */
+body.theme-night .quiz-container {
+    background: linear-gradient(135deg, rgba(11, 37, 50, 0.92), rgba(22, 53, 68, 0.9));
+}
+
+body.theme-night .result-card {
+    background: rgba(95, 134, 151, 0.2);
+}
+
+body.theme-night .result-card h3 {
+    color: #7ab8d4;
+}
+
+body.theme-night .result-details h4 {
+    color: #7ab8d4;
+}
+
+body.theme-night .result-details li {
+    background: rgba(122, 184, 212, 0.15);
+    border-left-color: #7ab8d4;
+}
+
+body.theme-night .progress {
+    background: linear-gradient(90deg, #5f8697, #7ab8d4);
+}
+
+/* 選項主題樣式 */
+body.theme-morning .option {
+    background: rgba(122, 90, 74, 0.3);
+    border-color: rgba(196, 122, 58, 0.4);
+}
+
+body.theme-morning .option:hover {
+    background: rgba(122, 90, 74, 0.5);
+    border-color: var(--accent-color);
+}
+
+body.theme-day .option {
+    background: rgba(42, 106, 128, 0.3);
+    border-color: rgba(42, 106, 128, 0.4);
+}
+
+body.theme-day .option:hover {
+    background: rgba(42, 106, 128, 0.5);
+    border-color: var(--accent-color);
+}
+
+body.theme-sunset .option {
+    background: rgba(139, 90, 74, 0.3);
+    border-color: rgba(212, 149, 106, 0.4);
+}
+
+body.theme-sunset .option:hover {
+    background: rgba(139, 90, 74, 0.5);
+    border-color: var(--accent-color);
+}
+
+body.theme-night .option {
+    background: rgba(95, 134, 151, 0.2);
+    border-color: rgba(122, 184, 212, 0.3);
+}
+
+body.theme-night .option:hover {
+    background: rgba(95, 134, 151, 0.4);
+    border-color: #7ab8d4;
 }
 
