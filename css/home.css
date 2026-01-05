@@ -744,6 +744,16 @@ body.theme-night .info-note {
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-card .btn-secondary {
+    margin-top: auto;
+    height: 45px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .event-card:hover {
