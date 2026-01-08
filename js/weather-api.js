@@ -61,8 +61,12 @@ const weatherAPI = {
     // 解析潮汐資料
     parseTideData: function(forecast) {
         try {
+            // 使用本地時間而非 UTC 時間
             const today = new Date();
-            const todayStr = today.toISOString().split('T')[0];
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            const todayStr = `${year}-${month}-${day}`;
             
             console.log('今天日期:', todayStr);
             console.log('forecast 結構:', forecast);
@@ -76,24 +80,38 @@ const weatherAPI = {
             
             console.log('每日潮汐資料筆數:', dailyData.length);
             
-            // 顯示前幾筆資料的日期
-            dailyData.slice(0, 3).forEach((d, idx) => {
+            // 顯示所有資料的日期
+            dailyData.forEach((d, idx) => {
                 console.log(`日期 ${idx}:`, d.Date);
             });
             
-            // 尋找今天的資料
-            const todayData = dailyData.find(d => d.Date === todayStr);
+            // 尋找今天或最接近的未來日期
+            let todayData = dailyData.find(d => d.Date === todayStr);
             
             if (!todayData) {
-                console.error('找不到今天的潮汐資料，使用第一筆資料');
-                const firstData = dailyData[0];
-                if (firstData && firstData.Time) {
-                    return this.extractTideTime(firstData, forecast.Location.LocationName);
+                console.warn('找不到今天的潮汐資料，尋找最接近的未來日期');
+                
+                // 找出大於等於今天的最近日期
+                const futureDates = dailyData
+                    .filter(d => d.Date >= todayStr)
+                    .sort((a, b) => a.Date.localeCompare(b.Date));
+                
+                if (futureDates.length > 0) {
+                    todayData = futureDates[0];
+                    console.log(`使用日期: ${todayData.Date}`);
+                } else {
+                    // 如果沒有未來日期，使用第一筆資料
+                    todayData = dailyData[0];
+                    console.log(`使用第一筆資料，日期: ${todayData.Date}`);
                 }
+            }
+            
+            if (!todayData || !todayData.Time) {
+                console.error('無法取得有效的潮汐時間資料');
                 return null;
             }
             
-            console.log('今天的潮汐資料:', JSON.stringify(todayData, null, 2));
+            console.log('使用的潮汐資料:', JSON.stringify(todayData, null, 2));
             
             return this.extractTideTime(todayData, forecast.Location.LocationName);
             
