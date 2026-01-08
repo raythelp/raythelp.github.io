@@ -3,9 +3,30 @@
 /* Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    padding: 0;
+    margin: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: calc(100vh - 80px);
+    min-height: 500px;
+    border: none;
+    display: block;
 }
 
 .hero-video {
